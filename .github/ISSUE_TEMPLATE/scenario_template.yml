@@ -1,0 +1,68 @@
+name: 🎮 应用场景投稿
+description: 分享你发现的有趣应用场景和案例
+title: "[场景]: "
+labels: ["enhancement", "scenario"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你分享Nekro Agent的有趣应用场景喵～你的创意将帮助更多用户发现AI助手的潜力！
+
+  - type: input
+    id: title
+    attributes:
+      label: 场景名称
+      description: 为你的应用场景起一个简短有吸引力的名称
+      placeholder: 例如：自动数据分析与可视化
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 场景描述
+      description: 请详细描述这个应用场景是如何工作的
+      placeholder: |
+        这个场景主要用于...
+        使用方法是...
+        解决了什么问题...
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: 示例对话/截图
+      description: 如果可能，请提供一段示例对话或截图展示
+      placeholder: |
+        用户：请帮我分析这份销售数据...
+        AI：我可以帮你...
+
+        (也可以在此处粘贴截图)
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: 场景分类
+      description: 这个应用场景属于哪个分类？
+      options:
+        - 日常助手
+        - 学习辅助
+        - 工作效率
+        - 创意设计
+        - 编程开发
+        - 数据处理
+        - 游戏娱乐
+        - 其他
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: permission
+    attributes:
+      label: 分享许可
+      description: 请确认以下内容
+      options:
+        - label: 我同意将此场景分享在Nekro Agent官方文档中
+          required: true
+        - label: 如需使用我提供的截图，我授权在文档中展示
