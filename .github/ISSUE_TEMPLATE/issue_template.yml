@@ -13,7 +13,7 @@ body:
     attributes:
       label: 相关页面
       description: 请提供相关的文档页面链接（如适用）
-      placeholder: 例如：https://doc.nekro.ai/docs/02_quick_start/quickstart
+      placeholder: 例如：https://miragedge.top/develop/index.md
         
   - type: textarea
     id: description
