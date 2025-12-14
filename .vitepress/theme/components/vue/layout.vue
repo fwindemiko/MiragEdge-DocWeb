@@ -48,7 +48,7 @@ watch(
           <div class="container">
             <div class="doc-footer-content">
               <span>MiragEdge✰锐界幻境</span>
-              <span> By </span>
+              <span>  By </span>
               <a href="https://space.bilibili.com/359174372" target="_blank" class="doc-footer-link">F.windEmiko</a>
             </div>  
             <div class="doc-footer-content">
