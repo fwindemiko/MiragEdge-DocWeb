@@ -111,7 +111,7 @@ export default defineConfig({
       provider: 'local',// algolia
       options: {
         locales: {
-          zh: {
+          root: {
             translations: {
               button: {
                 buttonText: '搜索文档',
