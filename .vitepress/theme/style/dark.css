@@ -1,0 +1,25 @@
+/**
+* 黑暗模式切换动画
+* -------------------------------------------------------------------------- */
+::view-transition-old(*) {
+  animation: none;
+}
+::view-transition-new(*) {
+  animation: globalDark .8s ease-in;
+}
+
+@keyframes globalDark {
+  from {
+    clip-path: circle(0% at var(--darkX) var(--darkY));
+  }
+  to {
+    clip-path: circle(100% at var(--darkX) var(--darkY));
+  }
+}
+
+/**
+* 黑暗模式下图片低亮度化
+* -------------------------------------------------------------------------- */
+.dark img {
+    filter: brightness(0.8);
+  }

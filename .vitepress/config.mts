@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { MermaidPlugin, MermaidMarkdown } from "vitepress-plugin-mermaid";
+import addContributorsPlugin from './theme/addContributors';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -59,7 +60,10 @@ export default defineConfig({
   
   // Vite 配置
   vite: {
-    plugins: [MermaidPlugin()],
+    plugins: [
+      MermaidPlugin(),
+      addContributorsPlugin(),
+    ],
     optimizeDeps: {
       include: ['mermaid'],
       exclude: ['mark.js'] // 排除 mark.js
@@ -168,23 +172,23 @@ export default defineConfig({
         text: '👥 官方Q群', 
         link: '/manual/qq_group' 
       },
-      {
-        text: '🔗 相关链接', 
-        items: [
-          { 
-            text: '📺 哔哩哔哩', 
-            link: 'https://space.bilibili.com/359174372',
-            target: '_blank',
-            rel: 'noopener noreferrer'
-          },
-          { 
-            text: '📦 GitHub - 锐界幻境文档', 
-            link: 'https://github.com/FwindEmi86/MiragEdge-DocWeb',
-            target: '_blank',
-            rel: 'noopener noreferrer'
-          },
-        ]
-      },
+      //{
+      //  text: '🔗 相关链接', 
+      //  items: [
+      //    { 
+      //      text: '📺 哔哩哔哩 - 狐风轩汐', 
+      //      link: 'https://space.bilibili.com/359174372',
+      //      target: '_blank',
+      //      rel: 'noopener noreferrer'
+      //    },
+      //    { 
+      //      text: '📦 GitHub - 锐界幻境文档', 
+      //      link: 'https://github.com/FwindEmi86/MiragEdge-DocWeb',
+      //      target: '_blank',
+      //      rel: 'noopener noreferrer'
+      //    },
+      //  ]
+      //},
     ],
     
     // 侧边栏配置
@@ -316,8 +320,13 @@ export default defineConfig({
       { 
         icon: 'bilibili', 
         link: 'https://space.bilibili.com/359174372',
-        ariaLabel: 'B站主页'
-      }
+        ariaLabel: '📺 哔哩哔哩 - 狐风轩汐'
+      },
+      { 
+        icon: 'github', 
+        link: 'https://github.com/FwindEmi86/MiragEdge-DocWeb',
+        ariaLabel: '📦 GitHub - 锐界幻境文档'
+      },
     ],
     
     // 最后更新时间

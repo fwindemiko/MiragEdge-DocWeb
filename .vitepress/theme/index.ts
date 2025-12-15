@@ -14,13 +14,14 @@ import './css/components/feature.css'
 import './css/components/search.css'
 import './css/layout/blur.css'
 import './css/base/overrides.css'
+import './style/dark.css'
 
 // 导入第三方库和组件
 import { inBrowser } from "vitepress"
 import busuanzi from "busuanzi.pure.js"
 import Confetti from "./components/vue/Confetti.vue"
-import MyLayout from './components/vue/switch.vue'
 import LayoutComponent from './components/vue/layout.vue'
+import Contributors from './components/vue/Contributors.vue'
 
 // 导入3D倾斜效果
 import { init3DTiltEffect } from './components/js/feature.js'
@@ -39,6 +40,7 @@ export default {
     // 注册全局组件
     app.component("Confetti", Confetti)
     app.component("LayoutComponent", LayoutComponent)
+    app.component('Contributors', Contributors)
 
     // 仅在浏览器环境下执行
     if (inBrowser) {

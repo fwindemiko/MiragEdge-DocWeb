@@ -1,13 +1,14 @@
-<!-- .vitepress/theme/components/vue/layout.vue -->
 <!-- 自定义布局组件，包含路由过渡动画和浮动按钮 -->
 
 <script setup>
 import { useRouter, useData } from "vitepress";
 import DefaultTheme from "vitepress/theme";
-import { ref, watch } from "vue";
+import { ref, watch, nextTick, provide } from "vue";
+import Contributors from './Contributors.vue';
 
 const { Layout } = DefaultTheme;
 const { route } = useRouter();
+const { isDark } = useData();
 const transitionName = ref('scale-in');
 
 /**
@@ -31,6 +32,46 @@ watch(
     transitionName.value = newIndex > oldIndex ? 'scale-in' : 'scale-out'
   }
 );
+
+/**
+ * 检查是否支持视图过渡动画
+ * @returns {boolean} 是否支持视图过渡动画
+ */
+const enableTransitions = () =>
+  'startViewTransition' in document &&
+  window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+
+/**
+ * 提供暗黑模式切换功能
+ */
+provide('toggle-appearance', async ({ clientX: x, clientY: y }) => {
+  if (!enableTransitions()) {
+    isDark.value = !isDark.value
+    return
+  }
+
+  const clipPath = [
+    `circle(0px at ${x}px ${y}px)`,
+    `circle(${Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y)
+    )}px at ${x}px ${y}px)`
+  ]
+
+  await document.startViewTransition(async () => {
+    isDark.value = !isDark.value
+    await nextTick()
+  }).ready
+
+  document.documentElement.animate(
+    { clipPath: isDark.value ? clipPath.reverse() : clipPath },
+    {
+      duration: 300,
+      easing: 'ease-in',
+      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`
+    }
+  )
+})
 </script>
 
 <template>
@@ -42,7 +83,18 @@ watch(
     >
       <div :key="route.path">
         <Layout />
-        
+
+        <!-- 贡献者组件 -->
+        <div class="centerdss">
+          <div class="content-wrapper">
+            <div class="vp-doc">
+              <!-- 这里是Markdown内容 -->
+            </div>
+            <!-- 在内容之后、页脚之前插入贡献者 -->
+            <Contributors />
+          </div>
+        </div>
+
         <!-- 文档页脚 -->
         <div class="doc-footer" v-if="route.path.includes('/')">
           <div class="container">
@@ -79,6 +131,31 @@ watch(
 </template>
 
 <style>
+/* 暗黑模式切换相关样式 */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root),
+.dark::view-transition-new(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root),
+.dark::view-transition-old(root) {
+  z-index: 2;
+}
+
+.VPSwitchAppearance {
+  width: 22px !important;
+}
+
+.VPSwitchAppearance .check {
+  transform: none !important;
+}
+
 /* 容器定位 */
 .router-wrapper {
   position: relative;
@@ -107,7 +184,7 @@ watch(
 .doc-footer {
   padding: 24px 0;
   border-top: 1px solid var(--vp-c-divider);
-  margin-top: 40px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -159,4 +236,30 @@ watch(
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+/* 确保内容区域有正确的边距 */
+.content-wrapper {
+  max-width: 100%;
+}
+
+.vp-doc {
+  padding-bottom: 0.2rem;
+}
+/* 关键修正：让贡献者组件内部内容水平居中 */
+
+.centerdss {
+  display: flex;          /* 用Flex布局控制内部元素 */
+  flex-direction: column; /* 内部元素垂直排列（标题+用户信息） */
+  align-items: center;    /* 核心：让内部所有元素水平居中 */
+  width: 100%;            /* 占满父容器宽度（确保是居中的容器） */
+  margin: 0 auto;         /* 本身在父容器中水平居中 */
+  margin-top: 0;          /* 清除默认上边距 */
+}
+
+/* 清除贡献者组件的底部间距（覆盖组件内部样式） */
+.centerdss .Contributors {
+  margin-bottom: 0 !important; /* 强制清除组件自带的底部边距 */
+  padding-bottom: 0;
+}
+
 </style>
