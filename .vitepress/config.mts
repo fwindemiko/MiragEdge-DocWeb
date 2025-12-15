@@ -248,10 +248,6 @@ export default defineConfig({
           ]
         },
         {
-          text: '❓ 常见问题',
-          link: '/manual/faq/'
-        },
-        {
           text: '🔧 常用功能教程',
           collapsed: false,
           items: [
@@ -261,8 +257,16 @@ export default defineConfig({
           ]
         },
         {
-          text: '💬 QQ 群组',
-          link: '/manual/qq_group'
+          items: [
+            {
+              text: '❓ 常见问题',
+              link: '/manual/faq'
+            },
+            {
+              text: '💬 QQ 群组',
+              link: '/manual/qq_group'
+            },
+          ],
         }
       ],
  
