@@ -16,7 +16,7 @@ hero:
       link: /features
     - theme: alt
       text: 玩家指南
-      link: /manual/
+      link: /manual/review.md
 
 features:
   - icon: 🚢

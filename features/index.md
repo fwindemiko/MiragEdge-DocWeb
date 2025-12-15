@@ -85,7 +85,7 @@
   <a href="/features/enchantments" class="feature-card chat-card">
     <div class="feature-card-content">
       <h3>💬 高级附魔系统</h3>
-      <p>待编写。</p>
+      <p>我们添加了更多新的附魔内容</p>
     </div>
   </a>
 </div>
