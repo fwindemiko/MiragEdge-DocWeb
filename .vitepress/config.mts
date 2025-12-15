@@ -151,11 +151,11 @@ export default defineConfig({
         text: '🎮 玩法介绍',
         activeMatch: '^/features/',
         items: [
-          { text: '🌱 星露谷种植', link: '/features/croups/' },
-          { text: '🎣 星露谷钓鱼', link: '/features/fishing/' },
-          { text: '✨ 特殊附魔', link: '/features/enchantments' },
-          { text: '⚔️ 装备升级', link: '/features/mmo/' },
-          { text: '🍲 更多食物', link: '/features/food' },
+          { text: '🌱 星露谷种植', link: '/features/croups/info' },
+          { text: '🎣 星露谷钓鱼', link: '/features/fishing/info' },
+          { text: '✨ 特殊附魔', link: '/features/enchantments/info' },
+          { text: '⚔️ 装备升级', link: '/features/mmo/info' },
+          { text: '🍲 更多食物', link: '/features/food/info' },
         ]
       },
       { 
@@ -198,21 +198,21 @@ export default defineConfig({
           text: '🌱 星露谷种植',
           collapsed: false,
           items: [
-            { text: '介绍', link: '/features/croups/' },
+            { text: '介绍', link: '/features/croups/info' },
           ]
         },
         {
           text: '🎣 星露谷钓鱼',
           collapsed: false,
           items: [
-            { text: '介绍', link: '/features/fishing/' },
+            { text: '介绍', link: '/features/fishing/info' },
           ]
         },
         {
           text: '✨ 特殊附魔',
           collapsed: false,
           items: [
-            { text: '介绍', link: '/features/enchantments' },
+            { text: '介绍', link: '/features/enchantments/info' },
             { text: '品质等级', link: '/features/enchantments/rarity' },
             { text: '功能分类', link: '/features/enchantments/group' },
             { text: '附魔列表', link: '/features/enchantments/list' },
@@ -222,14 +222,14 @@ export default defineConfig({
           text: '⚔️ 装备升级',
           collapsed: false,
           items: [
-            { text: '介绍', link: '/features/mmo/' },
+            { text: '介绍', link: '/features/mmo/info' },
           ]
         },
         {
           text: '🍲 更多食物',
           collapsed: false,
           items: [
-            { text: '介绍', link: '/features/food' },
+            { text: '介绍', link: '/features/food/info' },
           ]
         }
       ],
@@ -240,7 +240,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: '✅ 玩家审核', link: '/manual/review' },
-            { text: '⚖️ 玩家守则', link: '/manual/eula/' },
+            { text: '⚖️ 玩家守则', link: '/manual/eula' },
             { text: '🔗 入服方法', link: '/manual/tutorial/serverjoin' },
             { text: '💾 白名单系统', link: '/manual/tutorial/whitelist' },
             { text: '🔌 客户端安装', link: '/manual/tutorial/clientinstall' },
