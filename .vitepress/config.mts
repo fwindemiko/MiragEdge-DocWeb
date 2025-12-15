@@ -286,6 +286,10 @@ export default defineConfig({
           ]
         },
         { 
+          text: '✨ 贴图字符码', 
+          link: '/develop/sticker' 
+        },
+        { 
           text: '📅 更新日志', 
           link: '/develop/logs' 
         },
