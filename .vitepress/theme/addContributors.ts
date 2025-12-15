@@ -209,6 +209,30 @@ async function getAllContributors(): Promise<FullContributorData[]> {
 }
 
 /**
+ * 检查是否是首页文件
+ */
+function isHomePage(code: string, id: string): boolean {
+  // 方法1：检查文件名
+  //const fileName = path.basename(id).toLowerCase();
+  //if (fileName === 'index.md' || fileName === 'readme.md') {
+  //  return true;
+  //}
+  
+  // 方法2：检查文件路径
+  //const filePath = id.replace(process.cwd(), '').replace(/^\//, '').toLowerCase();
+  //if (filePath === 'index.md' || filePath === 'readme.md') {
+  //  return true;
+  //}
+  
+  // 方法3：检查内容是否有 layout: home（最可靠的判断）
+  if (code.includes('layout: home')) {
+    return true;
+  }
+  
+  return false;
+}
+
+/**
  * Vite插件
  */
 export default function addContributorsPlugin(): Plugin {
@@ -232,6 +256,12 @@ export default function addContributorsPlugin(): Plugin {
       // 只处理 .md 文件
       if (!id.endsWith('.md')) {
         return null;
+      }
+      
+      // 检查是否是首页，如果是则跳过处理
+      if (isHomePage(code, id)) {
+        console.log(`插件: 跳过首页文件 ${id}`);
+        return code; // 直接返回，不做任何修改
       }
       
       try {
@@ -284,7 +314,15 @@ export default function addContributorsPlugin(): Plugin {
               return code; // 不覆盖已有的
             }
             
-            return `${frontmatter}\ncontributors: ${contributorList}\n---${content}`;
+            // 在frontmatter末尾（但要在最后的---之前）插入contributors字段
+            const lastDashIndex = frontmatter.lastIndexOf('---');
+            if (lastDashIndex !== -1) {
+              const beforeDash = frontmatter.slice(0, lastDashIndex);
+              const afterDash = frontmatter.slice(lastDashIndex);
+              
+              // 确保格式正确：在---之前插入，并保留换行
+              return `${beforeDash.trim()}\ncontributors: ${contributorList}\n${afterDash}${content}`;
+            }
           }
         }
         
