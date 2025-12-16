@@ -7,12 +7,19 @@
 ▌ **Java版**  
 1. 群文件 → 进入"Java启动器资源"文件夹
   - 在交流群，群文件中，找到 下图所示 文件夹  
-  ![java版群文件目录](/images/JEGameFile.png "Java版群文件目录")  
-  *Java版群文件目录*
+<SmartImage 
+  src="/images/JEGameFile.png" 
+  alt="Java版群文件目录"
+  caption="Java版群文件目录"
+/>
 2. 推荐下载 `PCL2`（Plain Craft Launcher 2）
 3. 首次运行：
-   - 创建英文命名文件夹（推荐路径示例：`D:\Minecraft`）  
-   ![文件夹](/images/NewText.png "文件夹")  
+   - 创建英文命名文件夹（推荐路径示例：`D:\Minecraft`） 
+<SmartImage 
+  src="/images/NewText.png" 
+  alt="文件夹"
+  caption="文件夹"
+/> 
    - 将启动器文件（.exe）解压至该目录
    - 双击启动器自动生成配置文件
    - 完成启动器引导设置，登录正版或离线账户（注：离线登录必须使用纯英文ID，ID未来不要随便修改）
@@ -41,8 +48,11 @@
 ▌ **基岩版安装**  
 1. 前往交流群文件 → 查找对应文件夹  
   - 在交流群，群文件中，找到 下图所示 文件夹  
-  ![基岩版群文件目录](/images/BEGameFile.png "基岩版群文件目录")  
-  *基岩版群文件目录*  
+<SmartImage 
+  src="/images/BEGameFile.png" 
+  alt="基岩版群文件目录"
+  caption="基岩版群文件目录"
+/> 
   [**MCDL下载站**](https://mcbedl.com/)  
 2. 下载 `MCBE-1.21.xx.zip`
 3. 使用压缩工具解压并安装
@@ -95,25 +105,25 @@
 ① **游戏内注册**  
 直接通过游戏客户端完成注册流程  
 - 进入游戏，在游戏主界面点击设置  
-![注册](/images/msreg/msreg1.png "注册")
+<SmartImage src="/images/msreg/msreg1.png" alt="注册" />
 - 点击 通用 中的 档案 部分  
-![注册](/images/msreg/msreg2.png "注册")
+<SmartImage src="/images/msreg/msreg2.png" alt="注册" />
 - 进入档案设置后，点击【“免费”注册】  
 - 记得开启“使用移动数据”选项，可避免一些不必要的问题  
-![注册](/images/msreg/msreg3.png "注册")
+<SmartImage src="/images/msreg/msreg3.png" alt="注册" />
 - 点击免费注册后，会弹出一个提示框（没有就忽略这一步）  
 - 选择“保存至Microsoft账户”（两个选项均可，建议选择）  
-![注册](/images/msreg/msreg4.png "注册")
+<SmartImage src="/images/msreg/msreg4.png" alt="注册" />
 - 进入登陆界面后，点击登陆，出现以下界面，如果有账户  
 - 请直接登陆，没有账户请按提示注册  
-![注册](/images/msreg/msreg5.png "注册")
+<SmartImage src="/images/msreg/msreg5.png" alt="注册" />
 - **注册和登陆不尽相同，此步骤忽略，请自行操作（都这么大个人了别告诉我不会注册好吧）**
 
 ② **网页注册**  
 1. 浏览器访问 [微软官网](https://account.microsoft.com/)
 2. 点击右上角头像图标
 3. 选择"创建账户"根据引导完成注册
-![注册](/images/msreg/msreg6.png "注册")
+<SmartImage src="/images/msreg/msreg6.png" alt="注册" />
 一条龙注册（没啥好讲的）
 注册完去游戏里登陆就好
 

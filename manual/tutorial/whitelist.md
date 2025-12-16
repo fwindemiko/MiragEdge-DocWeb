@@ -12,14 +12,20 @@
 **2. 进入服务器**：
 - 进入服务器注册完成后会弹出下面的绑定提示  
   
-![绑定提示](/images/GameQQ.png "绑定提示")  
-*服内绑定提示*
+<SmartImage 
+  src="/images/GameQQ.png" 
+  alt="服内绑定提示"
+  caption="服内绑定提示"
+/>
   
 **3. 群内发送绑定信息**：
 - 根据 服内绑定提示 获取到的验证码，在玩家交流群中发送 **绑定 [验证码]**  
 
-![绑定验证码](/images/QQLink.png "绑定验证码")  
-*交流群发送绑定验证码*
+<SmartImage 
+  src="/images/QQLink.png" 
+  alt="交流群发送绑定验证码"
+  caption="交流群发送绑定验证码"
+/>
 
 ## 查绑方法
 
@@ -32,8 +38,11 @@
 
   **操作方法**如下图所示在玩家交流群中发送信息  
 
-![解绑](/images/QQUnLink.png "解绑")  
-*查、解绑相关指令*
+<SmartImage 
+  src="/images/QQUnLink.png" 
+  alt="查、解绑相关指令"
+  caption="查、解绑相关指令"
+/>
 
 ## 更多群内机器人指令操作
 

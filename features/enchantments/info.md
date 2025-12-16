@@ -16,7 +16,11 @@
 
 ---
 
-![新附魔效果展示](/images/features/enchantments_view.png)
+<SmartImage 
+  src="/images/features/enchantments_view.png" 
+  alt="新附魔效果展示"
+  caption="新附魔效果展示"
+/> 
 
 ---
 

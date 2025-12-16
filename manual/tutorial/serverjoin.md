@@ -38,15 +38,13 @@
 1. 进入游戏主界面 → 选择"服务器"
 
 2. 左侧列表滑动至底部点击"添加服务器"
-  ![添加服务器](/images/BEGame.png "添加服务器")  
-  *添加服务器*
+<SmartImage src="/images/BEGame.png" alt="添加服务器" />
 
 3. 填写连接信息：  
     `服务器名称: 我爱狐狸[自定义备注]`  
     `地址: miragedge.top`  
     `端口: 19132`
-  ![连接信息](/images/BEJoin.png "连接信息")  
-  *连接信息*
+<SmartImage src="/images/BEJoin.png" alt="连接信息" />
 
 4. 保存后即可加入游戏
 

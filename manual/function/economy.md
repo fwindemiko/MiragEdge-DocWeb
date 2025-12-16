@@ -4,12 +4,20 @@
 ## 🔸 基础货币：灵叶（Spirit Leaf）
 - **核心定义**：梦始之空与零境区域自然汇聚的灵力显化物，质地轻盈且蕴含微弱能量，是服务器基础流通货币。
 - **主要用途**：日常基础交易（如普通物资兑换、基础服务购买）、日常消耗类操作结算。
-- **图标参考**：![灵叶](/images/resourcepack/icon/money.png "灵叶")
+<SmartImage 
+  src="/images/resourcepack/icon/money.png" 
+  alt="灵叶图标参考"
+  caption="灵叶 图标参考"
+/>
 
 ## 🔹 高级货币：星痕石（Starscar Gem）
 - **核心定义**：蕴含强大且稳定幻境能量的稀有晶石，仅在星玖姬诞生地、重要灵脉节点等特殊区域产出。
 - **主要用途**：高级物品交易、游戏内技术/功能升级、稀有资源/限定道具兑换。
-- **图标参考**：![星痕石](/images/resourcepack/icon/points.png "星痕石")
+<SmartImage 
+  src="/images/resourcepack/icon/points.png" 
+  alt="星痕石图标参考"
+  caption="星痕石 图标参考"
+/>
 
 ### 📌 名称备注（统一认知）
 - 「灵叶」曾用名：金币、硬币（若看到这些称呼，均指代灵叶）；

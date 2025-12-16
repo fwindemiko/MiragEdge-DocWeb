@@ -11,7 +11,11 @@
 ---
 ## 群服消息互通
 - 群聊和游戏中，在聊天消息最前加上 `#` 即可互通转发消息  
-![消息互通](/images/msreg/hutongxiaoxi.png)
+<SmartImage 
+  src="/images/msreg/hutongxiaoxi.png" 
+  alt="消息互通"
+  caption="消息互通"
+/>
 
 ## 查看个人服内统计信息
 - 发送 `个人信息` `个人`
@@ -19,7 +23,11 @@
 
 ## 玩家在线列表
 - 发送 `在线` `list` 查看
-![玩家在线列表](/images/msreg/playerlist.png)
+<SmartImage 
+  src="/images/msreg/playerlist.png" 
+  alt="玩家在线列表"
+  caption="玩家在线列表"
+/>
 
 
 ## 在线时间排行
@@ -27,5 +35,9 @@
 
 ## 灵叶货币排行
 - 发送 `财富榜` 查看
-![财富榜](/images/msreg/caifubang.png)
+<SmartImage 
+  src="/images/msreg/caifubang.png" 
+  alt="财富榜"
+  caption="财富榜"
+/>
 

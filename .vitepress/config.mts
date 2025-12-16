@@ -298,6 +298,13 @@ export default defineConfig({
           ]
         },
         {
+          text: '🎨 服务器插件配置编写',
+          collapsed: false,
+          items: [
+            { text: '🌽 自定义种植作物', link: '/develop/server_configs/customcrops' },
+          ]
+        },
+        {
           text: '📕 网站开发编辑',
           collapsed: false,
           items: [
