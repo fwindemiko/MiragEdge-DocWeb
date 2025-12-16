@@ -4,7 +4,7 @@
 请前往【[**锐界幻境QQ交流群**](https://qm.qq.com/q/7oYTVQeBtS/)】群公告查看最新地址
 
 ## 账号绑定
-  - 为了安全，首次进入服务器时需要将游戏账号绑定QQ，[**不会绑定？点我查看**](https://miragedge.top/manual/tutorial/whitelist/)  
+  - 为了安全，首次进入服务器时需要将游戏账号绑定QQ，[**不会绑定？点我查看**](https://miragedge.top/manual/tutorial/whitelist)  
 
 ---
 

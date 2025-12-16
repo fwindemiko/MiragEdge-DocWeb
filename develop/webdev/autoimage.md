@@ -1,166 +1,311 @@
-# 图片展示示例
+# 图片自动化模块
 
 ## 基础用法
 
-<!-- 简单使用 -->
-<SmartImage src="/images/x.jpg" alt="示例图片" />
+<SmartImage src="https://picsum.photos/400/300?random=1" alt="示例图片" />
 
-<!-- 带说明文字 -->
+```
+<SmartImage src="https://picsum.photos/400/300?random=1" alt="示例图片" />
+```
+
+## 带说明文字
+
 <SmartImage 
-  src="/images/x.jpg" 
+  src="https://picsum.photos/400/300?random=1" 
   alt="示例图片"
   caption="这是一张示例图片的说明文字"
 />
 
+```
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1" 
+  alt="示例图片"
+  caption="这是一张示例图片的说明文字"
+/>
+```
+
 ## 尺寸控制
 
-<!-- 指定宽高 -->a
+- 固定宽度
+
 <SmartImage 
-  src="/images/x.jpg" 
+  src="https://picsum.photos/400/300?random=1" 
   width="600"
-  height="400"
-  caption="固定尺寸图片"
+  caption="固定宽度图片"
 />
 
-<!-- 最大宽度 -->
+- 限制最大宽度
+
 <SmartImage 
-  src="/images/x.jpg" 
-  maxWidth="800"
-  caption="限制最大宽度"
+  src="https://picsum.photos/400/300?random=1" 
+  maxWidth="800px"
+  caption="最大宽度800px"
 />
 
-<!-- 全宽显示 -->
+```
+<!-- 固定宽度 -->
 <SmartImage 
-  src="/images/x.jpg"
-  fullWidth
-  caption="全宽图片"
+  src="https://picsum.photos/400/300?random=1" 
+  width="600"
+  caption="固定宽度图片"
 />
 
-## 样式控制
+<!-- 限制最大宽度 -->
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1" 
+  maxWidth="800px"
+  caption="最大宽度800px"
+/>
+```
+
+## 圆角样式
+
+
+- 自动圆角
+
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
+  radius="auto"
+  caption="自动圆角（根据长宽比）"
+/>
+
+- 自定义圆角
+
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
+  radius="12px"
+  caption="12px圆角"
+/>
+
+```
+<!-- 自动圆角 -->
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
+  radius="auto"
+  caption="自动圆角（根据长宽比）"
+/>
 
 <!-- 自定义圆角 -->
 <SmartImage 
-  src="/images/x.jpg"
+  src="https://picsum.photos/400/300?random=1"
   radius="12px"
-  caption="圆角图片"
+  caption="12px圆角"
 />
 
-<!-- 自动圆角 -->
+<!-- 无圆角 -->
 <SmartImage 
-  src="/images/x.jpg"
-  radius="auto"
-  caption="自动圆角"
+  src="https://picsum.photos/400/300?random=1"
+  :radius="false"
+  caption="无圆角"
+/>
+```
+
+## 阴影效果
+
+- 默认阴影
+
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
+  shadow
+  caption="默认阴影"
 />
 
-<!-- 阴影效果 -->
+- 自定义阴影
+
 <SmartImage 
-  src="/images/x.jpg"
-  shadow="large"
-  caption="大阴影效果"
+  src="https://picsum.photos/400/300?random=1"
+  shadow="0 2px 8px rgba(0, 0, 0, 0.1)"
+  caption="轻阴影"
 />
 
-<!-- 带边框 -->
+```
+<!-- 默认阴影 -->
 <SmartImage 
-  src="/images/x.jpg"
+  src="https://picsum.photos/400/300?random=1"
+  shadow
+  caption="默认阴影"
+/>
+
+<!-- 自定义阴影 -->
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
+  shadow="0 2px 8px rgba(0, 0, 0, 0.1)"
+  caption="轻阴影"
+/>
+
+<!-- 无阴影 -->
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
+  :shadow="false"
+  caption="无阴影"
+/>
+```
+
+## 边框
+
+- 默认边框
+
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
+  border
+  caption="默认边框"
+/>
+
+- 自定义边框
+
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
   border="2px solid #eaecef"
-  caption="带边框图片"
+  caption="自定义边框"
 />
 
-<!-- 悬停阴影 -->
+- 无边框
+
 <SmartImage 
-  src="/images/x.jpg"
-  shadow="hover"
-  caption="鼠标悬停时有阴影效果"
+  src="https://picsum.photos/400/300?random=1"
+  :border="false"
+  caption="无边框"
 />
 
-## 功能控制
-
-<!-- 禁用懒加载 -->
+```
+<!-- 默认边框 -->
 <SmartImage 
-  src="/images/x.jpg"
+  src="https://picsum.photos/400/300?random=1"
+  border
+  caption="默认边框"
+/>
+
+<!-- 自定义边框 -->
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
+  border="2px solid #eaecef"
+  caption="自定义边框"
+/>
+
+<!-- 无边框 -->
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
+  :border="false"
+  caption="无边框"
+/>
+```
+
+## 加载控制
+
+- 立即加载
+<SmartImage 
+  src="https://picsum.photos/400/300?random=1"
   :lazy="false"
   caption="立即加载"
 />
 
-<!-- 禁用放大 -->
+- 懒加载（默认）
 <SmartImage 
-  src="/images/x.jpg"
-  :zoomable="false"
-  caption="不可放大"
+  src="https://picsum.photos/400/300?random=1"
+  :lazy="true"
+  caption="懒加载"
 />
 
-<!-- 显示图片信息 -->
+```
+<!-- 立即加载 -->
 <SmartImage 
-  src="/images/x.jpg"
-  :showInfo="true"
-  caption="显示图片尺寸信息"
+  src="https://picsum.photos/400/300?random=1"
+  :lazy="false"
+  caption="立即加载"
 />
 
-## 响应式布局
-
-<!-- 自适应 -->
+<!-- 懒加载（默认） -->
 <SmartImage 
-  src="/images/x.jpg"
-  :responsive="true"
-  caption="响应式图片"
+  src="https://picsum.photos/400/300?random=1"
+  :lazy="true"
+  caption="懒加载"
 />
-
-<!-- 自定义断点 -->
-<SmartImage 
-  src="/images/x.jpg"
-  :responsive="true"
-  :breakpoints="{ sm: 576, md: 768, lg: 992, xl: 1200 }"
-  caption="自定义响应式断点"
-/>
+```
 
 ## 综合示例
 
 <SmartImage 
-  src="/images/x.jpg"
-  alt="英雄图片"
-  caption="综合功能示例 - 支持圆角、阴影、悬停效果和点击放大"
-  maxWidth="900"
+  src="https://picsum.photos/800/600"
+  alt="综合示例"
+  caption="综合功能演示：自动圆角、阴影、边框、懒加载"
+  width="600"
   radius="auto"
-  shadow="hover"
-  border="true"
-  background="auto"
-  :zoomable="true"
-  :showInfo="true"
-  :responsive="true"
-  customClass="featured-image"
+  shadow
+  border
+  :lazy="true"
 />
 
-## 画廊示例（多图片）
+```
+<SmartImage 
+  src="https://picsum.photos/800/600"
+  alt="综合示例"
+  caption="综合功能演示：自动圆角、阴影、边框、懒加载"
+  width="600"
+  radius="auto"
+  shadow
+  border
+  :lazy="true"
+/>
+```
 
-<div class="image-gallery">
+## 图片画廊
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 2rem 0;">
   <SmartImage 
-    src="/images/x.jpg"
-    width="300"
-    height="200"
+    src="https://picsum.photos/400/300?random=1"
+    alt="图片1"
     radius="8px"
-    shadow="medium"
+    shadow
   />
   <SmartImage 
-    src="/images/x.jpg"
-    width="300"
-    height="200"
+    src="https://picsum.photos/400/300?random=2"
+    alt="图片2"
     radius="8px"
-    shadow="medium"
+    shadow
   />
   <SmartImage 
-    src="/images/gallxery3.jpg"
-    width="300"
-    height="200"
+    src="https://picsum.photos/400/300?random=3"
+    alt="图片3"
     radius="8px"
-    shadow="medium"
+    shadow
   />
 </div>
 
-<style>
-.image-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin: 2rem 0;
-}
-</style>
+```
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 2rem 0;">
+  <SmartImage 
+    src="https://picsum.photos/400/300?random=1"
+    alt="图片1"
+    radius="8px"
+    shadow
+  />
+  <SmartImage 
+    src="https://picsum.photos/400/300?random=2"
+    alt="图片2"
+    radius="8px"
+    shadow
+  />
+  <SmartImage 
+    src="https://picsum.photos/400/300?random=3"
+    alt="图片3"
+    radius="8px"
+    shadow
+  />
+</div>
+```
+
+## 组件配置参数
+
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `src` | `String` | 必填 | 图片路径 |
+| `alt` | `String` | `''` | 替代文本 |
+| `caption` | `String` | `''` | 图片说明 |
+| `width` | `Number/String` | `null` | 图片宽度 |
+| `height` | `Number/String` | `null` | 图片高度 |
+| `maxWidth` | `Number/String` | `null` | 最大宽度 |
+| `radius` | `String/Number/Boolean` | `'auto'` | 圆角设置 |
+| `shadow` | `String/Boolean` | `true` | 阴影效果 |
+| `border` | `Boolean/String` | `false` | 边框设置 |
+| `lazy` | `Boolean` | `true` | 懒加载 |
+| `showInfo` | `Boolean` | `false` | 显示图片信息 |

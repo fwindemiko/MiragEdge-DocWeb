@@ -20,7 +20,7 @@ import './style/dark.css'
 
 // 导入第三方库和组件
 import { inBrowser } from "vitepress"
-import busuanzi from "busuanzi.pure.js"
+import busuanzi from "busuanzi.pure.js" //这是重要的视觉组件，别管报错，能用，我也不知道为什么报错找不到模块（
 import Confetti from "./components/vue/Confetti.vue"
 import LayoutComponent from './components/vue/layout.vue'
 import Contributors from './components/vue/Contributors.vue'
