@@ -116,7 +116,7 @@
 ## 综合示例
 
 <SmartImage 
-  src="/images/hero.jpg"
+  src="/images/x.jpg"
   alt="英雄图片"
   caption="综合功能示例 - 支持圆角、阴影、悬停效果和点击放大"
   maxWidth="900"
@@ -134,21 +134,21 @@
 
 <div class="image-gallery">
   <SmartImage 
-    src="/images/gallery1.jpg"
+    src="/images/x.jpg"
     width="300"
     height="200"
     radius="8px"
     shadow="medium"
   />
   <SmartImage 
-    src="/images/gallery2.jpg"
+    src="/images/x.jpg"
     width="300"
     height="200"
     radius="8px"
     shadow="medium"
   />
   <SmartImage 
-    src="/images/gallery3.jpg"
+    src="/images/gallxery3.jpg"
     width="300"
     height="200"
     radius="8px"
