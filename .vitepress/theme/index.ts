@@ -4,7 +4,6 @@
 import { h, onMounted } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import GuildSystem from './components/vue/GuildSystem.vue'
 
 // 导入所有样式文件
 import './css/base/colors.css'
@@ -19,7 +18,6 @@ import './style/dark.css'
 
 // 导入第三方库和组件
 import { inBrowser } from "vitepress"
-import busuanzi from "busuanzi.pure.js"
 import Confetti from "./components/vue/Confetti.vue"
 import LayoutComponent from './components/vue/layout.vue'
 import Contributors from './components/vue/Contributors.vue'
@@ -42,7 +40,6 @@ export default {
     app.component("Confetti", Confetti)
     app.component("LayoutComponent", LayoutComponent)
     app.component('Contributors', Contributors)
-    app.component('GuildSystem', GuildSystem)
 
     // 仅在浏览器环境下执行
     if (inBrowser) {
