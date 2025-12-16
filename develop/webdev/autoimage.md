@@ -1,5 +1,25 @@
 # 图片自动化模块
 
+这是个Vue模块，用于在文档网站页面的md代码中快速插入优雅的图片。  
+
+## 组件配置参数
+
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `src` | `String` | 必填 | 图片路径 |
+| `alt` | `String` | `''` | 替代文本 |
+| `caption` | `String` | `''` | 图片说明 |
+| `width` | `Number/String` | `null` | 图片宽度 |
+| `height` | `Number/String` | `null` | 图片高度 |
+| `maxWidth` | `Number/String` | `null` | 最大宽度 |
+| `radius` | `String/Number/Boolean` | `'auto'` | 圆角设置 |
+| `shadow` | `String/Boolean` | `true` | 阴影效果 |
+| `border` | `Boolean/String` | `false` | 边框设置 |
+| `lazy` | `Boolean` | `true` | 懒加载 |
+| `showInfo` | `Boolean` | `false` | 显示图片信息 |
+
+---
+
 ## 基础用法
 
 <SmartImage src="https://picsum.photos/400/300?random=1" alt="示例图片" />
@@ -309,21 +329,3 @@
   />
 </div>
 ```
-
----
-
-## 组件配置参数
-
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `src` | `String` | 必填 | 图片路径 |
-| `alt` | `String` | `''` | 替代文本 |
-| `caption` | `String` | `''` | 图片说明 |
-| `width` | `Number/String` | `null` | 图片宽度 |
-| `height` | `Number/String` | `null` | 图片高度 |
-| `maxWidth` | `Number/String` | `null` | 最大宽度 |
-| `radius` | `String/Number/Boolean` | `'auto'` | 圆角设置 |
-| `shadow` | `String/Boolean` | `true` | 阴影效果 |
-| `border` | `Boolean/String` | `false` | 边框设置 |
-| `lazy` | `Boolean` | `true` | 懒加载 |
-| `showInfo` | `Boolean` | `false` | 显示图片信息 |
