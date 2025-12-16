@@ -34,7 +34,7 @@
 
 <SmartImage 
   src="https://picsum.photos/400/300?random=1" 
-  width="600"
+  width="400"
   caption="固定宽度图片"
 />
 
@@ -42,23 +42,23 @@
 
 <SmartImage 
   src="https://picsum.photos/400/300?random=1" 
-  maxWidth="800px"
-  caption="最大宽度800px"
+  maxWidth="200px"
+  caption="最大宽度200px"
 />
 
 ```
 <!-- 固定宽度 -->
 <SmartImage 
   src="https://picsum.photos/400/300?random=1" 
-  width="600"
+  width="400"
   caption="固定宽度图片"
 />
 
 <!-- 限制最大宽度 -->
 <SmartImage 
   src="https://picsum.photos/400/300?random=1" 
-  maxWidth="800px"
-  caption="最大宽度800px"
+  maxWidth="200px"
+  caption="最大宽度200px"
 />
 ```
 
@@ -79,8 +79,8 @@
 
 <SmartImage 
   src="https://picsum.photos/400/300?random=1"
-  radius="12px"
-  caption="12px圆角"
+  radius="22px"
+  caption="22px圆角"
 />
 
 ```
@@ -94,8 +94,8 @@
 <!-- 自定义圆角 -->
 <SmartImage 
   src="https://picsum.photos/400/300?random=1"
-  radius="12px"
-  caption="12px圆角"
+  radius="22px"
+  caption="22px圆角"
 />
 
 <!-- 无圆角 -->
@@ -165,7 +165,7 @@
 
 <SmartImage 
   src="https://picsum.photos/400/300?random=1"
-  border="2px solid #eaecef"
+  border="4px solid #eaecef"
   caption="自定义边框"
 />
 
@@ -188,7 +188,7 @@
 <!-- 自定义边框 -->
 <SmartImage 
   src="https://picsum.photos/400/300?random=1"
-  border="2px solid #eaecef"
+  border="4px solid #eaecef"
   caption="自定义边框"
 />
 
