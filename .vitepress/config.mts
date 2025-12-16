@@ -289,10 +289,12 @@ export default defineConfig({
             { text: '📋 项目开发说明', link: '/develop/mc_plugins/' },
             {
               text: '📊 现有插件列表', 
-              collapsed: false, 
+              collapsed: true, 
               items: [
                 { text: '💰 等价交换商店', link: '/develop/mc_plugins/emcshop' },
                 { text: '🛩️ 幻空翼飞行', link: '/develop/mc_plugins/fe_fly' },
+                { text: '📜 冒险等级任务', link: '/develop/mc_plugins/fe_quests' },
+                { text: '🗞️ 物品功能核心', link: '/develop/mc_plugins/fe_itemscore' },
               ]
             },
           ]
