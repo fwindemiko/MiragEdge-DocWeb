@@ -11,6 +11,13 @@
 | 红色感叹号提示（info） | `` | ![红色感叹号提示](/images/resourcepack/icon/info.png) |
 | 聊天（chat） | `` | ![聊天](/images/resourcepack/icon/chat.png) |
 | 日期（time） | `` | ![日期](/images/resourcepack/icon/time.png) |
+| NPC（npc） | `` | ![NPC](/images/resourcepack/icon/npc.png) |
+| 商店（shop） | `` | ![商店](/images/resourcepack/icon/shop.png) |
+| 玩家（player） | `` | ![玩家](/images/resourcepack/icon/player.png) |
+| 会员（vip） | `` | ![会员](/images/resourcepack/icon/vip.png) |
+| 大会员（vip_plus） | `⫔` | ![大会员](/images/resourcepack/icon/vip_plus.png) |
+| MVP会员（mvp） | `` | ![MVP会员](/images/resourcepack/icon/mvp.png) |
+| 大MVP会员（mvp_plus） | `⺞` | ![大MVP会员](/images/resourcepack/icon/mvp_plus.png) |
 
 ## 物品材质贴图
 暂无
