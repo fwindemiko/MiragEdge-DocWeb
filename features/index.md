@@ -82,7 +82,7 @@
 </style>
 
 <div class="feature-cards">
-  <a href="/features/enchantments/info.md" class="feature-card chat-card">
+  <a href="/features/enchantments/info" class="feature-card chat-card">
     <div class="feature-card-content">
       <h3>💬 高级附魔系统</h3>
       <p>我们添加了更多新的附魔内容</p>
