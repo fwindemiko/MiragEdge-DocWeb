@@ -5,7 +5,7 @@ title: MiragEdge 文档中心
 
 hero:
   name: "锐界幻境"
-  text: "创新玩法、极致体验的我的世界服务器"
+  text: "Minecraft生存服务器"
   tagline: 👼🏻远离困恼之地（锐界）和天堂般的境地（幻境），在数字荒漠中打造一片绿洲，让每个玩家都能找到属于自己的幻境
   image:
     src: /images/MiragEdge.png
