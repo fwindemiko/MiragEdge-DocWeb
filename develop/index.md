@@ -112,8 +112,8 @@ const partners = [
   {
     avatar: '/images/member/Zelova.png',
     name: '幻辰汐Zelova',
-    title: '测试 | 玩家',
-    desc: '长期参与服务器测试，发现并反馈大量功能BUG，保障体验稳定性',
+    title: '玩家',
+    desc: '曾长期参与服务器测试，反馈大量BUG，超级在线王',
     links: [
       { icon: 'bilibili', link: 'https://space.bilibili.com/523518473' },
       { icon: 'qq', link: 'http://wpa.qq.com/msgrd?v=3&uin=1415785556&site=qq&menu=yes' }
