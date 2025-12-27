@@ -42,7 +42,7 @@
             </button>
             <div v-if="showSurpriseText" class="surprise-text">
               <p>宝宝，和你在一起的{{ loveDays }}天，是我生命中最美好的时光。</p>
-              <p>每一天都因为有你而变得特别，圣诞快乐，我的爱人！🎅🎁</p>
+              <p>每一天都因为有你而变得特别，圣诞快乐，我的宝宝！🎅🎁</p>
             </div>
           </div>
         </div>
@@ -258,6 +258,8 @@ onUnmounted(() => {
   padding: 20px;
   font-family: 'Arial', 'Microsoft YaHei', sans-serif;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 标题样式 */
@@ -310,21 +312,26 @@ onUnmounted(() => {
   margin-top: 8px;
 }
 
-/* 主要内容区域布局 */
+/* 主要内容区域布局 - 修改关键部分 */
 .main-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center; /* 添加这个实现垂直居中 */
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
+  flex: 1; /* 占据可用空间 */
+  min-height: 500px; /* 确保最小高度，以便居中显示 */
 }
 
-/* 左侧祝福语区域 */
+/* 左侧祝福语区域 - 修改高度和对齐 */
 .messages-section {
   flex: 1;
   min-width: 300px;
   max-width: 500px;
+  display: flex;
+  align-items: center; /* 内部垂直居中 */
 }
 
 .messages-container {
@@ -332,7 +339,11 @@ onUnmounted(() => {
   border-radius: 15px;
   padding: 25px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 500px; /* 与圣诞树区域高度匹配 */
 }
 
 .section-title {
@@ -349,6 +360,8 @@ onUnmounted(() => {
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 10px;
   margin-bottom: 25px;
+  flex: 1; /* 占据可用空间 */
+  align-content: center; /* 网格内容垂直居中 */
 }
 
 .message-card {
@@ -360,6 +373,9 @@ onUnmounted(() => {
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .message-card:hover {
@@ -374,13 +390,13 @@ onUnmounted(() => {
 }
 
 .current-message-display {
-  margin: 30px 0;
+  margin: 15px 0;
 }
 
 .message-bubble {
   background: linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%);
   border-radius: 20px;
-  padding: 25px;
+  padding: 20px;
   position: relative;
   box-shadow: 0 5px 15px rgba(255, 0, 100, 0.3);
 }
@@ -398,7 +414,7 @@ onUnmounted(() => {
 }
 
 .message-content {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   line-height: 1.4;
   margin-bottom: 10px;
 }
@@ -412,7 +428,7 @@ onUnmounted(() => {
 
 .interactive-section {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .btn {
@@ -446,11 +462,13 @@ onUnmounted(() => {
   line-height: 1.5;
 }
 
-/* 圣诞树区域 */
+/* 圣诞树区域 - 修改高度和对齐 */
 .tree-section {
   flex: 1;
   min-width: 300px;
   max-width: 600px;
+  display: flex;
+  align-items: center; /* 内部垂直居中 */
 }
 
 .tree-container {
@@ -459,6 +477,11 @@ onUnmounted(() => {
   padding: 25px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 500px; /* 与左侧区域高度匹配 */
 }
 
 /* 圣诞树样式 */
@@ -466,7 +489,7 @@ onUnmounted(() => {
   width: 300px;
   height: 400px;
   position: relative;
-  margin: 0 auto 30px;
+  margin: 0 auto 20px;
 }
 
 .tree-layer {
@@ -676,6 +699,7 @@ onUnmounted(() => {
   background: rgba(0, 20, 40, 0.8);
   border-radius: 10px;
   font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 .footer-date {
@@ -688,6 +712,12 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .main-content {
     flex-direction: column;
+    align-items: stretch; /* 移动端恢复默认对齐 */
+  }
+  
+  .messages-section, .tree-section {
+    max-width: 100%;
+    margin-bottom: 20px;
   }
   
   .title {
@@ -704,6 +734,10 @@ onUnmounted(() => {
   
   .tree {
     transform: scale(0.9);
+  }
+  
+  .messages-container, .tree-container {
+    min-height: auto; /* 移动端取消最小高度 */
   }
 }
 </style>
