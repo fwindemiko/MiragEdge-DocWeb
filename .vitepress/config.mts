@@ -324,6 +324,13 @@ export default defineConfig({
           ]
         },
         {
+          text: '😸 服务器功能玩法设计',
+          collapsed: false,
+          items: [
+            { text: '赛季玩法设计方案', link: '/develop/gameplay/liveops_260107' },
+          ]
+        },
+        {
           text: '📕 网站开发编辑',
           collapsed: false,
           items: [
