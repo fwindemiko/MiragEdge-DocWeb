@@ -10,7 +10,7 @@
 
 [**点击前往蓝奏云下载**](https://wwbkb.lanzouu.com/b002vmtcve "AllMusic")(密码: 3fsb )
 
-> ✅ 适用版本：仅 1.21 版本的 Fabric 端可用，安装时请寻找最接近自身游戏版本的适配包
+> ✅ 适用版本：仅 1.21 版本的 Fabric 端可用，安装时请寻找最接近自身游戏版本接近的模组包
 > ✅ 必需前置：[FLK] [Fabric Language Kotlin](https://www.mcmod.cn/class/2126.html "FLK")
 
 ### ✔ 服内完整使用指令
