@@ -2,7 +2,7 @@
 
 音乐点播姬(AllMusic)
 
-[点击前往蓝奏云下载](https://markdown.com.cn "AllMusic")(密码:3fsb)
+[点击前往蓝奏云下载](https://wwbkb.lanzouu.com/b002vmtcve "AllMusic")(密码:3fsb)
 
 
 简单语音聊天(Simple Voice Chat)
