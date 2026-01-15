@@ -9,18 +9,17 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # 只需要node 22版本
-        node-version: [22.x]
+    env:
+      NODE_VERSION: 22.x
+      TEST_OUTPUT_DIR: fwindemiko
 
     steps:
     - uses: actions/checkout@v4
     
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
     
@@ -33,11 +32,29 @@ jobs:
           cp -rf ./.vitepress/mark.js ./node_modules/
         fi
     
+    - name: Create test output directory
+      run: |
+        mkdir -p ./${{ env.TEST_OUTPUT_DIR }}/coverage
+        mkdir -p ./${{ env.TEST_OUTPUT_DIR }}/test-results
+        mkdir -p ./${{ env.TEST_OUTPUT_DIR }}/logs
+    
     - name: Build project
       run: npm run build
     
     - name: Run tests
       run: npm test
+      continue-on-error: true
+    
+    - name: Run tests with coverage
+      run: npm run test:coverage
+    
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: ./${{ env.TEST_OUTPUT_DIR }}/
+        retention-days: 7
       
     - name: Check broken links (optional)
       run: |
