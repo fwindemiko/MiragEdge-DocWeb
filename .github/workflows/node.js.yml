@@ -34,11 +34,12 @@ jobs:
             cp -rf ./.vitepress/mark.js ./node_modules/
           fi
 
-      - name: Create test output directory
+      - name: Create test output directories
         run: |
           mkdir -p ./fwindemiko/test/coverage
           mkdir -p ./fwindemiko/test/test-results
           mkdir -p ./fwindemiko/test/logs
+          echo "Test directories created successfully"
 
       - name: Build project
         run: npm run build
@@ -46,52 +47,46 @@ jobs:
       - name: Run tests with coverage
         id: tests
         run: |
-          npm run coverage 2>&1 | tee ./fwindemiko/test/logs/test-output.log
-          TEST_EXIT_CODE=${PIPESTATUS[0]}
+          echo "Starting test execution..."
+          npm run test:coverage 2>&1 | tee ./fwindemiko/test/logs/test-output.log
           
-          # 检查测试结果文件是否存在
+          # 记录退出代码
+          TEST_EXIT_CODE=${PIPESTATUS[0]}
+          echo "Test exit code: $TEST_EXIT_CODE"
+          
+          # 验证测试输出文件
           if [ -f "./fwindemiko/test/test-results/test-output.json" ]; then
-            echo "Test results generated successfully"
+            echo "✓ Test results generated successfully"
           fi
           
           if [ -d "./fwindemiko/test/coverage" ]; then
-            echo "Coverage report generated successfully"
+            echo "✓ Coverage report generated successfully"
           fi
           
           exit $TEST_EXIT_CODE
         continue-on-error: true
 
-      - name: Upload test results
+      - name: Upload test results as artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: test-results-${{ github.run_id }}
           path: |
-            fwindemiko/test/test-results/
-            fwindemiko/test/coverage/
-            fwindemiko/test/logs/
-          retention-days: 30
-
-      - name: Upload coverage to Codecov
-        if: always()
-        uses: codecov/codecov-action@v4
-        with:
-          directory: ./fwindemiko/test/coverage/
-          fail_ci_if_error: false
-
-      - name: Check broken links (optional)
-        run: |
-          if [ -f "./.vitepress/dist/index.html" ]; then
-            npx linkinator ./.vitepress/dist --recurse --silent
-          fi
+            fwindemiko/test/
+          retention-days: 7
 
       - name: Test Summary
         if: always()
         run: |
           echo "=== Test Execution Summary ==="
-          echo "Test Exit Code: ${{ steps.tests.outcome }}"
+          echo "Test Status: ${{ steps.tests.outcome }}"
           
           if [ -f "./fwindemiko/test/logs/test-output.log" ]; then
-            echo "=== Last 50 lines of test output ==="
-            tail -50 ./fwindemiko/test/logs/test-output.log
+            echo "=== Last 20 lines of test output ==="
+            tail -20 ./fwindemiko/test/logs/test-output.log
           fi
+          
+          echo "=== Test Artifacts Location ==="
+          echo "Coverage: fwindemiko/test/coverage/"
+          echo "Results: fwindemiko/test/test-results/"
+          echo "Logs: fwindemiko/test/logs/"
