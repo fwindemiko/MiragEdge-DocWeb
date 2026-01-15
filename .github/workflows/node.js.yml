@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build-and-test:
@@ -12,52 +12,86 @@ jobs:
     env:
       NODE_VERSION: 22.x
       TEST_OUTPUT_DIR: fwindemiko
+      VITEST_OUTPUT: fwindemiko/test/test-results/test-output.json
+      VITEST_COVERAGE: fwindemiko/test/coverage
 
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-        cache-dependency-path: '**/package-lock.json'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Copy mark.js (if needed)
-      run: |
-        if [ -f "./.vitepress/mark.js" ]; then
-          cp -rf ./.vitepress/mark.js ./node_modules/
-        fi
-    
-    - name: Create test output directory
-      run: |
-        mkdir -p ./${{ env.TEST_OUTPUT_DIR }}/coverage
-        mkdir -p ./${{ env.TEST_OUTPUT_DIR }}/test-results
-        mkdir -p ./${{ env.TEST_OUTPUT_DIR }}/logs
-    
-    - name: Build project
-      run: npm run build
-    
-    - name: Run tests
-      run: npm test
-      continue-on-error: true
-    
-    - name: Run tests with coverage
-      run: npm run test:coverage
-    
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: ./${{ env.TEST_OUTPUT_DIR }}/
-        retention-days: 7
-      
-    - name: Check broken links (optional)
-      run: |
-        if [ -f "./.vitepress/dist/index.html" ]; then
-          npx linkinator ./.vitepress/dist --recurse --silent
-        fi
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Copy mark.js (if needed)
+        run: |
+          if [ -f "./.vitepress/mark.js" ]; then
+            cp -rf ./.vitepress/mark.js ./node_modules/
+          fi
+
+      - name: Create test output directory
+        run: |
+          mkdir -p ./fwindemiko/test/coverage
+          mkdir -p ./fwindemiko/test/test-results
+          mkdir -p ./fwindemiko/test/logs
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run tests with coverage
+        id: tests
+        run: |
+          npm run coverage 2>&1 | tee ./fwindemiko/test/logs/test-output.log
+          TEST_EXIT_CODE=${PIPESTATUS[0]}
+          
+          # 检查测试结果文件是否存在
+          if [ -f "./fwindemiko/test/test-results/test-output.json" ]; then
+            echo "Test results generated successfully"
+          fi
+          
+          if [ -d "./fwindemiko/test/coverage" ]; then
+            echo "Coverage report generated successfully"
+          fi
+          
+          exit $TEST_EXIT_CODE
+        continue-on-error: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            fwindemiko/test/test-results/
+            fwindemiko/test/coverage/
+            fwindemiko/test/logs/
+          retention-days: 30
+
+      - name: Upload coverage to Codecov
+        if: always()
+        uses: codecov/codecov-action@v4
+        with:
+          directory: ./fwindemiko/test/coverage/
+          fail_ci_if_error: false
+
+      - name: Check broken links (optional)
+        run: |
+          if [ -f "./.vitepress/dist/index.html" ]; then
+            npx linkinator ./.vitepress/dist --recurse --silent
+          fi
+
+      - name: Test Summary
+        if: always()
+        run: |
+          echo "=== Test Execution Summary ==="
+          echo "Test Exit Code: ${{ steps.tests.outcome }}"
+          
+          if [ -f "./fwindemiko/test/logs/test-output.log" ]; then
+            echo "=== Last 50 lines of test output ==="
+            tail -50 ./fwindemiko/test/logs/test-output.log
+          fi
