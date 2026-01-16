@@ -263,6 +263,7 @@ export default defineConfig({
             { text: '🐶 MOD拓展功能支持', link: '/manual/function/mod' },
             { text: '💰 经济系统', link: '/manual/function/economy' },
             { text: '🏠 玩家工会', link: '/manual/function/playerguild' },
+            { text: '🎡 幻域领地', link: '/manual/function/dom' },
           ]
         },
         {
