@@ -31,7 +31,7 @@ export default defineConfig({
     ['link', { rel: 'manifest', href: '/title_img/site.webmanifest' }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }],
-    ['meta', { name: 'keywords', content: 'MiragEdge, 锐界幻境, Minecraft, 我的世界, 服务器, 文档, 玩家手册, 狐风轩汐, FwindEmi, F.windEmi' }],
+    ['meta', { name: 'keywords', content: 'MiragEdge, 锐界幻境, Minecraft, 我的世界, 服务器, 文档, 玩家手册, 狐风轩汐, FwindEmi, F.windEmiko' }],
     ['meta', { name: 'author', content: 'F.windEmiko' }],
     ['meta', { property: 'og:title', content: 'MiragEdge 文档中心' }],
     ['meta', { property: 'og:description', content: '锐界幻境 全方位的指南' }],
@@ -364,7 +364,6 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Dockerfile', link: '/fwindemiko/docker/docker_file' },
-            { text: 'GPMaill单机部署', link: '/fwindemiko/docker/gpmall' },
           ]
         },
         {
@@ -372,7 +371,6 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'kubectl命令速查指南', link: '/fwindemiko/kubernetes/kubectl' },
-            { text: 'GitLab CI/CD', link: '/fwindemiko/kubernetes/gitlab_cicd' },
           ]
         },
       ]
