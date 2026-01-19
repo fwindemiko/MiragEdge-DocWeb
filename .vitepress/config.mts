@@ -356,8 +356,19 @@ export default defineConfig({
             { text: '旧文档', link: 'https://doc.miragedge.top' },
           ]
         }
+      ],
+      
+      '/fwindemiko/': [
+        {
+          text: 'K8s 学习笔记',
+          collapsed: false,
+          items: [
+            { text: 'kubectl命令速查指南', link: '/fwindmiko/kubernetes/kubectl' },
+          ]
+        }
       ]
     },
+    
     
     // 大纲配置
     outline: {
