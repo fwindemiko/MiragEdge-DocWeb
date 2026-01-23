@@ -353,7 +353,7 @@ export default defineConfig({
           collapsed: true,
           items: [
             { text: '概述', link: '/develop/' },
-            { text: '旧文档', link: 'https://doc.miragedge.top' },
+            { text: '节点状态', link: '/develop/serverstatus' },
           ]
         }
       ],
