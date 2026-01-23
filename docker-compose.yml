@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     ports:
       - "5173:80"  # 母机5173端口映射到容器80端口
-      - "5174:80"
+      - "5174:88"
     volumes:
       # 映射静态网站目录
       - ./build/f.windemiko.top:/web_fwindemiko
