@@ -135,6 +135,14 @@ const partners = [
     ],
   },
   {
+    avatar: '/images/member/laowu.jpg',
+    name: '老无',
+    title: '赞助者 | 玩家',
+    desc: '服务器的步履不停，皆因有赞助者相伴同行',
+    links: [
+    ],
+  },
+  {
     avatar: '/images/member/Zelova.png',
     name: '幻辰汐Zelova',
     title: '玩家',
@@ -155,7 +163,7 @@ const partners = [
   <VPTeamPageTitle>
     <template #title>开发团队</template>
     <template #lead>
-      锐界幻境的稳定运行与功能迭代，离不开每位团队成员的专业付出与持续投入
+      锐界幻境的稳定运行与功能迭代，离不开每位团队成员的专业付出与持续投入（排名不分前后）
     </template>
   </VPTeamPageTitle>
   
@@ -166,7 +174,7 @@ const partners = [
   <VPTeamPageSection>
     <template #title>社区贡献者</template>
     <template #lead>
-      感谢每位为服务器添砖加瓦的贡献者，正是你们的参与让锐界幻境更完善
+      感谢每位为服务器添砖加瓦的贡献者，正是你们的参与让锐界幻境更完善（排名不分前后）
     </template>
     <template #members>
       <VPTeamMembers size="small" :members="partners" />
