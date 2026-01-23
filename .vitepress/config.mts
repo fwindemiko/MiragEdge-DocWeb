@@ -39,7 +39,7 @@ export default defineConfig({
     ['meta', { property: 'og:image', content: '/title_img/og-image.png' }],
     ['meta', { property: 'og:url', content: 'https://docs.miraged.ge' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:creator', content: '@FwindEmiko' }],
+    ['meta', { name: 'twitter:creator', content: '@test_tool' }],
     // 百度站点验证（如果需要）
     // ['meta', { name: 'baidu-site-verification', content: 'code-xxxxxxxx' }],
     // 360站点验证（如果需要）
@@ -357,23 +357,6 @@ export default defineConfig({
           ]
         }
       ],
-      
-      '/fwindemiko/': [
-        {
-          text: 'Docker 学习笔记',
-          collapsed: false,
-          items: [
-            { text: 'Dockerfile', link: '/fwindemiko/docker/docker_file' },
-          ]
-        },
-        {
-          text: 'K8s 学习笔记',
-          collapsed: false,
-          items: [
-            { text: 'kubectl命令速查指南', link: '/fwindemiko/kubernetes/kubectl' },
-          ]
-        },
-      ]
     },
     
     

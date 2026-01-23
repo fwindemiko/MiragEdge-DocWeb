@@ -1,13 +1,17 @@
 # Dependencies
 node_modules/
 
+# 个人站
+fwindemiko
+
 # Build output
-#.vitepress/dist/
+.vitepress/dist/
 .vitepress/cache/
 .vitepress/.temp/
 
+
 # Test output
-fwindemiko/test/
+test_tool
 !.gitkeep
 
 # IDE files

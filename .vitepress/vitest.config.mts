@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config'
 import { resolve } from 'path'
 
 const projectRoot = process.cwd()
-const outputDir = resolve(projectRoot, 'fwindemiko/test')
+const outputDir = resolve(projectRoot, 'test_tool/test')
 
 export default defineConfig({
   test: {
@@ -22,7 +22,7 @@ export default defineConfig({
       exclude: [
         './node_modules/**',
         '**/dist/**',
-        '**/fwindemiko/**',
+        '**/test_tool/**',
         '**/*.config.*',
         '**/*.d.ts',
         '**/*.spec.{ts,js}', // 排除测试文件
@@ -45,7 +45,7 @@ export default defineConfig({
     ],
     outputFile: resolve(outputDir, 'test-results/test-output.json'),
     include: ['**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    exclude: ['**/node_modules/**', '**/dist/**', '**/fwindemiko/**']
+    exclude: ['**/node_modules/**', '**/dist/**', '**/test_tool/**']
   },
   resolve: {
     alias: {

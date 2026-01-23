@@ -40,11 +40,11 @@ echo " "
 echo " "
 
 # 构建网站
-npm run build
+#npm run build
 
 echo " "
 echo " "
-echo "构建完成！正在启动文档网站服务..."
+#echo "构建完成！正在启动文档网站服务..."
 #echo "正在启动文档网站服务..."
 echo " "
 echo " "

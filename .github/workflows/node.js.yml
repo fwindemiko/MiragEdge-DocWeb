@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_VERSION: 22.x
-      TEST_OUTPUT_DIR: fwindemiko
-      VITEST_OUTPUT: fwindemiko/test/test-results/test-output.json
-      VITEST_COVERAGE: fwindemiko/test/coverage
+      TEST_OUTPUT_DIR: test_tool
+      VITEST_OUTPUT: test_tool/test/test-results/test-output.json
+      VITEST_COVERAGE: test_tool/test/coverage
 
     steps:
       - uses: actions/checkout@v4
@@ -33,9 +33,9 @@ jobs:
 
       - name: 创建测试报告输出目录（如果没有）
         run: |
-          mkdir -p ./fwindemiko/test/coverage
-          mkdir -p ./fwindemiko/test/test-results
-          mkdir -p ./fwindemiko/test/logs
+          mkdir -p ./test_tool/test/coverage
+          mkdir -p ./test_tool/test/test-results
+          mkdir -p ./test_tool/test/logs
           echo "Test directories created successfully"
 
       - name: 构建网页项目
@@ -45,18 +45,18 @@ jobs:
         id: tests
         run: |
           echo "Starting test execution..."
-          npm run test:coverage 2>&1 | tee ./fwindemiko/test/logs/test-output.log
+          npm run test:coverage 2>&1 | tee ./test_tool/test/logs/test-output.log
           
           # 记录退出代码
           TEST_EXIT_CODE=${PIPESTATUS[0]}
           echo "Test exit code: $TEST_EXIT_CODE"
           
           # 验证测试输出文件
-          if [ -f "./fwindemiko/test/test-results/test-output.json" ]; then
+          if [ -f "./test_tool/test/test-results/test-output.json" ]; then
             echo "✓ 测试并生成报告成功"
           fi
           
-          if [ -d "./fwindemiko/test/coverage" ]; then
+          if [ -d "./test_tool/test/coverage" ]; then
             echo "✓ 测试并生成报告失败"
           fi
           
@@ -69,7 +69,7 @@ jobs:
         with:
           name: test-results-${{ github.run_id }}
           path: |
-            fwindemiko/test/
+            test_tool/test/
           retention-days: 7
 
       - name: 测试统计信息输出总结
@@ -78,12 +78,12 @@ jobs:
           echo "=== 测试执行摘要 ==="
           echo "测试统计信息: ${{ steps.tests.outcome }}"
           
-          if [ -f "./fwindemiko/test/logs/test-output.log" ]; then
+          if [ -f "./test_tool/test/logs/test-output.log" ]; then
             echo "=== 测试时的最后20行日志 ==="
-            tail -20 ./fwindemiko/test/logs/test-output.log
+            tail -20 ./test_tool/test/logs/test-output.log
           fi
           
           echo "=== 测试结果目录 ==="
-          echo "Coverage: fwindemiko/test/coverage/"
-          echo "Results: fwindemiko/test/test-results/"
-          echo "Logs: fwindemiko/test/logs/"
+          echo "Coverage: test_tool/test/coverage/"
+          echo "Results: test_tool/test/test-results/"
+          echo "Logs: test_tool/test/logs/"

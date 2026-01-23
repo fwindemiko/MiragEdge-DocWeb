@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "5173:80"  # 母机5173端口映射到容器80端口
+    volumes:
+      # 映射静态网站目录
+      - ./build/f.windemiko.top:/web_fwindemiko
+      - ./build/miragedge.top:/web_miragedge
+      # 可选的：如果需要热更新配置文件而不重建镜像，可以挂载配置文件
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - miragedge-network
+
+networks:
+  miragedge-network:
+    driver: bridge
