@@ -2,7 +2,7 @@
 node_modules/
 
 # Build output
-.vitepress/dist/
+#.vitepress/dist/
 .vitepress/cache/
 .vitepress/.temp/
 
