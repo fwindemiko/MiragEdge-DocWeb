@@ -1,4 +1,9 @@
 # 锐界幻境 MC生存服务器 - 入服审核说明
+
+https://motd.minebbs.com/api/status_img?ip=mc.miragedge.top&stype=auto&theme=simple
+
+https://motd.minebbs.com/api/status_img?ip=miragedge.top&stype=be&theme=simple
+
 我们致力于打造友好、稳定的慢节奏生存社区，入服审核旨在过滤不良行为玩家（如熊孩子），保障所有玩家的游戏体验，以下是具体的审核规则与流程。
 
 ---
