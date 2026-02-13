@@ -12,7 +12,7 @@ services:
       - "5174:88"              # f.windemiko.top WordPress 站点（监听88）
     volumes:
       # WordPress 目录
-      - /www/MiragEdge/fwindemiko:/web_fwindemiko:ro
+      - /www/MiragEdge/fwindemiko:/web_fwindemiko
       # 静态站点目录
       - ./build/miragedge.top:/web_miragedge:ro
       # Nginx 配置文件
@@ -45,13 +45,10 @@ services:
       MYSQL_USER: fwindemiko                    # 与 wp-config.php 中 DB_USER 一致
       MYSQL_PASSWORD: 88888888            # ⚠️ 改为你的实际密码（与 wp-config.php 一致）
     volumes:
-      - db_data:/www/MiragEdge/mysql             # 数据持久化
+      - /www/MiragEdge/mysql:/var/lib/mysql             # 数据持久化
     networks:
       - miragedge-network
 
 networks:
   miragedge-network:
     external: true          # 确保此网络已存在（若未存在，先创建）
-
-volumes:
-  db_data:                 # 定义持久化卷
