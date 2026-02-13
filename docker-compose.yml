@@ -40,7 +40,7 @@ services:
     container_name: db
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: *L5201314x       # 请改为强密码
+      MYSQL_ROOT_PASSWORD: "*L5201314x"       # 请改为强密码
       MYSQL_DATABASE: fwindemiko              # 与 wp-config.php 中 DB_NAME 一致
       MYSQL_USER: fwindemiko                    # 与 wp-config.php 中 DB_USER 一致
       MYSQL_PASSWORD: 88888888            # ⚠️ 改为你的实际密码（与 wp-config.php 一致）
