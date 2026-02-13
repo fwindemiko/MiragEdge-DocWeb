@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     libwebp-dev \
     libxpm-dev \
     libzip-dev \
-    oniguruma-dev   # mbstring 可能需要，WordPress 推荐
+    oniguruma-dev
 
 # 2. 配置 GD 扩展（启用对 jpeg, png, freetype, webp, xpm 的支持）
 RUN docker-php-ext-configure gd \
@@ -18,23 +18,26 @@ RUN docker-php-ext-configure gd \
     --with-webp \
     --with-xpm
 
-# 3. 安装 PHP 扩展（按需调整）
+# 3. 安装 PHP 扩展
 RUN docker-php-ext-install \
     mysqli \
     pdo_mysql \
     gd \
     exif \
     zip \
-    mbstring         # WordPress 推荐
+    mbstring
 
-# 4. （可选）安装 Redis 等第三方扩展（如果需要）
+# 4. 复制自定义 PHP 配置（大文件上传、超时等）
+COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+
+# 5. （可选）安装 Redis 等第三方扩展
 # RUN pecl install redis && docker-php-ext-enable redis
 
-# 5. 清理缓存（减少镜像体积）
+# 6. 清理缓存
 RUN rm -rf /var/cache/apk/*
 
-# 6. 设置时区（可选）
+# 7. 设置时区
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone
 
-# 7. 使用非 root 用户运行（官方镜像默认已是 www-data）
+# 8. 使用非 root 用户运行
 USER www-data
