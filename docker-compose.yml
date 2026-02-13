@@ -11,7 +11,7 @@ services:
       - "5173:80"              # miragedge.top 静态站点
       - "5174:88"              # f.windemiko.top WordPress 站点（监听88）
     volumes:
-      # WordPress 目录（Nginx 只需读权限）
+      # WordPress 目录
       - /www/MiragEdge/fwindemiko:/web_fwindemiko:ro
       # 静态站点目录
       - ./build/miragedge.top:/web_miragedge:ro
