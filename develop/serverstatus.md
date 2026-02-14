@@ -10,12 +10,12 @@
   src="https://motd.minebbs.com/api/status_img?ip=mc.miragedge.top&stype=auto&theme=simple"
   alt="Java在线状态"
   caption="Java在线状态"
-  width="300"
+  width="200"
 />
 
 <SmartImage
   src="https://motd.minebbs.com/api/status_img?ip=miragedge.top&stype=be&theme=simple"
   alt="BedRock在线状态"
   caption="BedRock在线状态"
-  width="300"
+  width="200"
 />

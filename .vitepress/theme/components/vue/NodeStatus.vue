@@ -95,7 +95,10 @@ const formatMemory = (used: number | undefined, total: number | undefined): stri
 // 格式化硬盘显示
 const formatDisk = (used: number | undefined, total: number | undefined): string => {
   if (used === undefined || total === undefined) return 'N/A';
-  return `${used}GB / ${total}GB`;
+  const usedGB = used / 1024;
+  const totalGB = total / 1024;
+  // 保留两位小数，若需要可调整为 toFixed(1) 或动态小数位
+  return `${usedGB.toFixed(2)}GB / ${totalGB.toFixed(2)}GB`;
 };
 
 // 获取服务器状态数据
