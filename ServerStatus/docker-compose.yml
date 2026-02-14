@@ -18,6 +18,8 @@ services:
     volumes:
       - ./server/config.json:/ServerStatus/server/config.json 
       - ./web/json:/usr/share/nginx/html/json
+      - ../../build/miragedge.top/ServerStatus/json:/usr/share/nginx/html/json:rw
+      - ../../build/miragedge.top/ServerStatus/json:/usr/share/nginx/html/json_build
     ports:
       - 35601:35601
       - 8130:80

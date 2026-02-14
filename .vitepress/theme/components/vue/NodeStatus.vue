@@ -101,7 +101,7 @@ const formatDisk = (used: number | undefined, total: number | undefined): string
 // 获取服务器状态数据
 const fetchServerStatus = async () => {
   try {
-    const response = await fetch('/ServerStatus/web/json/stats.json');
+    const response = await fetch('/ServerStatus/json/stats.json');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
