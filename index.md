@@ -12,11 +12,11 @@ hero:
     alt: MiragEdge
   actions:
     - theme: brand
-      text: 玩法介绍
-      link: /features
-    - theme: alt
       text: 玩家指南
       link: /manual/review.md
+    - theme: alt
+      text: 玩法介绍
+      link: /features
 
 features:
   - icon: 🚢
