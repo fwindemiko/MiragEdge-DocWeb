@@ -176,6 +176,12 @@ export default defineConfig({
            rel: 'noopener noreferrer'
          },
          { 
+           text: '☁️ 锐界幻境下载站', 
+           link: 'https://cloud.miragedge.top',
+           target: '_blank',
+           rel: 'noopener noreferrer'
+         },
+         { 
            text: '📺 哔哩哔哩 - 狐风轩汐', 
            link: 'https://space.bilibili.com/359174372',
            target: '_blank',
