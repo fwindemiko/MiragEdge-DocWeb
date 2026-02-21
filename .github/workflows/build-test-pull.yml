@@ -33,9 +33,9 @@ jobs:
 
       - name: 创建测试报告输出目录
         run: |
-          mkdir -p ${{ env.TEST_OUTPUT_DIR }}/test/coverage
-          mkdir -p ${{ env.TEST_OUTPUT_DIR }}/test/test-results
-          mkdir -p ${{ env.TEST_OUTPUT_DIR }}/test/logs
+          mkdir -p "${{ env.TEST_OUTPUT_DIR }}/test/coverage"
+          mkdir -p "${{ env.TEST_OUTPUT_DIR }}/test/test-results"
+          mkdir -p "${{ env.TEST_OUTPUT_DIR }}/test/logs"
           echo "测试目录创建成功"
 
       - name: 构建网页项目
@@ -45,7 +45,7 @@ jobs:
         id: tests
         run: |
           echo "开始执行测试..."
-          npm run test:coverage 2>&1 | tee ${{ env.TEST_OUTPUT_DIR }}/test/logs/test-output.log
+          npm run test:coverage 2>&1 | tee "${{ env.TEST_OUTPUT_DIR }}/test/logs/test-output.log"
           
           # 记录退出代码
           TEST_EXIT_CODE=${PIPESTATUS[0]}
@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-results-${{ github.run_id }}
-          path: ${{ env.TEST_OUTPUT_DIR }}/test/
+          path: "${{ env.TEST_OUTPUT_DIR }}/test/"
           retention-days: 7
 
       - name: 测试统计信息输出总结
@@ -83,7 +83,7 @@ jobs:
           
           if [ -f "${{ env.TEST_OUTPUT_DIR }}/test/logs/test-output.log" ]; then
             echo "=== 测试日志最后20行 ==="
-            tail -20 ${{ env.TEST_OUTPUT_DIR }}/test/logs/test-output.log
+            tail -20 "${{ env.TEST_OUTPUT_DIR }}/test/logs/test-output.log"
           fi
           
           echo "=== 测试结果目录 ==="
@@ -119,12 +119,12 @@ jobs:
           echo "打包完成: ${{ runner.temp }}/$PACKAGE_NAME (gzip -9)"
 
       # ---------- 上传打包文件为 GitHub 工件 ----------
-      - name: 输出构建产物
+      - name: 上传构建产物
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
         uses: actions/upload-artifact@v4
         with:
           name: built-site-${{ github.run_id }}
-          path: ${{ runner.temp }}/build-${{ github.run_id }}.tar.gz
+          path: "${{ runner.temp }}/build-${{ github.run_id }}.tar.gz"
           retention-days: 12
           if-no-files-found: error
 
@@ -152,23 +152,26 @@ jobs:
           LOCAL_PACKAGE="${{ runner.temp }}/$PACKAGE_NAME"
 
           # 1. 确保远程目标目录存在
-          ssh -p $REMOTE_PORT ${REMOTE_USER}@${REMOTE_HOST} "mkdir -p ${REMOTE_PATH}"
+          ssh -p "$REMOTE_PORT" "${REMOTE_USER}@${REMOTE_HOST}" "mkdir -p \"${REMOTE_PATH}\""
 
-          # 2. 上传压缩包到远程服务器临时位置（如 /tmp）
-          scp -P $REMOTE_PORT $LOCAL_PACKAGE ${REMOTE_USER}@${REMOTE_HOST}:/tmp/$PACKAGE_NAME
+          # 2. 上传压缩包到远程服务器临时位置，并检查 scp 是否成功
+          scp -P "$REMOTE_PORT" "$LOCAL_PACKAGE" "${REMOTE_USER}@${REMOTE_HOST}:/tmp/$PACKAGE_NAME" || {
+            echo "❌ SCP 上传失败"
+            exit 1
+          }
 
-          # 3. 远程解压到目标目录并清理
-          ssh -p $REMOTE_PORT ${REMOTE_USER}@${REMOTE_HOST} "
+          # 3. 远程解压到目标目录并清理（使用单引号包裹远程命令，内部变量断开引号处理）
+          ssh -p "$REMOTE_PORT" "${REMOTE_USER}@${REMOTE_HOST}" '
             set -e
-            echo '解压中...'
+            echo "解压中..."
             # 清空目标目录（保留目录本身）
-            rm -rf ${REMOTE_PATH}*
+            rm -rf "'"${REMOTE_PATH}"'"*
             # 解压到目标目录（假设包内包含一个顶层目录，需 strip 第一层）
-            tar -xzf /tmp/$PACKAGE_NAME -C ${REMOTE_PATH} --strip-components=1
+            tar -xzf "/tmp/'"$PACKAGE_NAME"'" -C "'"${REMOTE_PATH}"'" --strip-components=1
             # 删除临时压缩包
-            rm -f /tmp/$PACKAGE_NAME
-            echo '解压完成，目录内容：'
-            ls -la ${REMOTE_PATH}
-          "
+            rm -f "/tmp/'"$PACKAGE_NAME"'"
+            echo "解压完成，目录内容："
+            ls -la "'"${REMOTE_PATH}"'"
+          '
 
-          echo "部署完成！"
+          echo "✅ 部署完成！"
