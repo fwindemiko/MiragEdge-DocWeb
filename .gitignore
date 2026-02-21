@@ -13,7 +13,7 @@ build
 
 
 # Test output
-test_tool
+# test_tool
 !.gitkeep
 
 # IDE files
