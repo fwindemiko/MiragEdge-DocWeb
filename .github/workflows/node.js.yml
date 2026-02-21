@@ -103,21 +103,9 @@ jobs:
         run: |
           ssh-keyscan -H miragedge.top >> ~/.ssh/known_hosts
 
-      - name: 部署到服务器（含 rsync 强制安装与路径检查）
+      - name: 部署到服务器
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
         run: |
-          # 强制确保 rsync 可用
-          sudo apt-get update
-          sudo apt-get install --reinstall -y rsync
-          
-          # 查找 rsync 的绝对路径（若仍未找到则报错）
-          RSYNC_CMD=$(command -v rsync)
-          if [ -z "$RSYNC_CMD" ]; then
-            echo "错误：rsync 仍未安装成功！"
-            exit 1
-          fi
-          echo "使用 rsync 路径: $RSYNC_CMD"
-
           # 定义远程服务器信息
           REMOTE_USER="root"
           REMOTE_HOST="miragedge.top"
@@ -135,10 +123,10 @@ jobs:
           fi
           echo "使用构建目录: $BUILD_DIR"
 
-          # 确保远程目录存在
-          ssh -p $REMOTE_PORT ${REMOTE_USER}@${REMOTE_HOST} "mkdir -p ${REMOTE_PATH}"
+          # 确保远程目录存在并清空（等价于 --delete）
+          ssh -p $REMOTE_PORT ${REMOTE_USER}@${REMOTE_HOST} "mkdir -p ${REMOTE_PATH} && rm -rf ${REMOTE_PATH}*"
 
-          # 使用 rsync 同步文件（使用绝对路径）
-          $RSYNC_CMD -avz --delete -e "ssh -p $REMOTE_PORT" ${BUILD_DIR}/ ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}
+          # 使用 scp 递归复制所有文件（包括隐藏文件）
+          scp -P $REMOTE_PORT -r ${BUILD_DIR}/. ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}
 
           echo "部署完成！"
