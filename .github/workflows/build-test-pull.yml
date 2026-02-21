@@ -107,13 +107,15 @@ jobs:
           fi
           echo "使用构建目录: $BUILD_DIR"
 
-          # 定义打包文件名（包含 run_id 便于区分）
+          # 定义打包文件名
           PACKAGE_NAME="build-${{ github.run_id }}.tar.gz"
           echo "PACKAGE_NAME=$PACKAGE_NAME" >> $GITHUB_ENV
           echo "BUILD_DIR=$BUILD_DIR" >> $GITHUB_ENV
 
-          # 进入构建目录的父目录打包，保持目录结构
-          cd $(dirname $BUILD_DIR)tar -c $(basename $BUILD_DIR) | gzip -9 > ${{ runner.temp }}/$PACKAGE_NAME
+          # 切换到父目录，打包构建目录
+          cd "$(dirname "$BUILD_DIR")"
+          # 使用 gzip -9 最高压缩级别
+          tar -c "$(basename "$BUILD_DIR")" | gzip -9 > "${{ runner.temp }}/$PACKAGE_NAME"
           echo "打包完成: ${{ runner.temp }}/$PACKAGE_NAME (gzip -9)"
 
       # ---------- 上传打包文件为 GitHub 工件 ----------
@@ -123,7 +125,7 @@ jobs:
         with:
           name: built-site-${{ github.run_id }}
           path: ${{ runner.temp }}/build-${{ github.run_id }}.tar.gz
-          retention-days: 7
+          retention-days: 12
           if-no-files-found: error
 
       # ---------- 部署阶段 ----------
