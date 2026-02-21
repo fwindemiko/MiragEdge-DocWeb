@@ -15,10 +15,7 @@
 | `radius` | `String/Number/Boolean` | `'auto'` | 圆角设置 |
 | `shadow` | `String/Boolean` | `true` | 阴影效果 |
 | `border` | `Boolean/String` | `false` | 边框设置 |
-| `lazy` | `Boolean` | `true` | 懒加载 |
 | `showInfo` | `Boolean` | `false` | 显示图片信息 |
-
----
 
 ## 基础用法
 
@@ -27,8 +24,6 @@
 ```
 <SmartImage src="https://picsum.photos/400/300?random=1" alt="示例图片" />
 ```
-
----
 
 ## 带说明文字
 
@@ -45,8 +40,6 @@
   caption="这是一张示例图片的说明文字"
 />
 ```
-
----
 
 ## 尺寸控制
 
@@ -82,10 +75,7 @@
 />
 ```
 
----
-
 ## 圆角样式
-
 
 - 自动圆角
 
@@ -220,65 +210,27 @@
 />
 ```
 
----
-
-## 加载控制
-
-- 立即加载
-<SmartImage 
-  src="https://picsum.photos/400/300?random=1"
-  :lazy="false"
-  caption="立即加载"
-/>
-
-- 懒加载（默认）
-<SmartImage 
-  src="https://picsum.photos/400/300?random=1"
-  :lazy="true"
-  caption="懒加载"
-/>
-
-```
-<!-- 立即加载 -->
-<SmartImage 
-  src="https://picsum.photos/400/300?random=1"
-  :lazy="false"
-  caption="立即加载"
-/>
-
-<!-- 懒加载（默认） -->
-<SmartImage 
-  src="https://picsum.photos/400/300?random=1"
-  :lazy="true"
-  caption="懒加载"
-/>
-```
-
----
-
 ## 综合示例
 
 <SmartImage 
   src="https://picsum.photos/800/600"
   alt="综合示例"
-  caption="综合功能演示：自动圆角、阴影、边框、懒加载"
+  caption="综合功能演示：自动圆角、阴影、边框"
   width="600"
   radius="auto"
   shadow
   border
-  :lazy="true"
 />
 
 ```
 <SmartImage 
   src="https://picsum.photos/800/600"
   alt="综合示例"
-  caption="综合功能演示：自动圆角、阴影、边框、懒加载"
+  caption="综合功能演示：自动圆角、阴影、边框"
   width="600"
   radius="auto"
   shadow
   border
-  :lazy="true"
 />
 ```
 

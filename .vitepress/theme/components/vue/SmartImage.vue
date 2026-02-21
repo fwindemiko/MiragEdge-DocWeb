@@ -89,10 +89,6 @@ export default {
       type: [Boolean, String],
       default: false
     },
-    lazy: {
-      type: Boolean,
-      default: true
-    },
     showInfo: {
       type: Boolean,
       default: false
@@ -192,29 +188,7 @@ export default {
     }
   },
 
-  mounted() {
-    if (!this.lazy) {
-      this.preloadImage()
-    }
-  },
-
   methods: {
-    async preloadImage() {
-      try {
-        const img = new Image()
-        img.onload = () => {
-          this.imageSize = {
-            width: img.width,
-            height: img.height,
-            aspectRatio: img.width / img.height
-          }
-        }
-        img.src = this.src
-      } catch (e) {
-        console.error('图片预加载失败:', e)
-      }
-    },
-
     onImageLoad(event) {
       this.loaded = true
       const img = event.target
@@ -235,6 +209,7 @@ export default {
 </script>
 
 <style scoped>
+/* 样式保持不变 */
 .smart-image-container {
   margin: 1.5rem 0;
   text-align: center;
