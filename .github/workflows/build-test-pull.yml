@@ -113,12 +113,11 @@ jobs:
           echo "BUILD_DIR=$BUILD_DIR" >> $GITHUB_ENV
 
           # 进入构建目录的父目录打包，保持目录结构
-          cd $(dirname $BUILD_DIR)
-          tar -czf ${{ runner.temp }}/$PACKAGE_NAME $(basename $BUILD_DIR)
-          echo "打包完成: ${{ runner.temp }}/$PACKAGE_NAME"
+          cd $(dirname $BUILD_DIR)tar -c $(basename $BUILD_DIR) | gzip -9 > ${{ runner.temp }}/$PACKAGE_NAME
+          echo "打包完成: ${{ runner.temp }}/$PACKAGE_NAME (gzip -9)"
 
       # ---------- 上传打包文件为 GitHub 工件 ----------
-      - name: 上传构建产物工件
+      - name: 输出构建产物
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
         uses: actions/upload-artifact@v4
         with:
@@ -139,7 +138,7 @@ jobs:
         run: |
           ssh-keyscan -H miragedge.top >> ~/.ssh/known_hosts
 
-      - name: 部署到服务器（压缩包方式）
+      - name: 部署到服务器
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
         run: |
           # 定义远程服务器信息
