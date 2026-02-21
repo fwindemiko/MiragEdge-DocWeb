@@ -91,6 +91,42 @@ jobs:
           echo "报告: ${{ env.TEST_OUTPUT_DIR }}/test/test-results/"
           echo "日志: ${{ env.TEST_OUTPUT_DIR }}/test/logs/"
 
+      # ---------- 打包构建产物 ----------
+      - name: 打包构建产物
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
+        id: package
+        run: |
+          # 自动探测构建输出目录
+          if [ -d "./.vitepress/dist" ]; then
+            BUILD_DIR="./.vitepress/dist"
+          elif [ -d "./dist" ]; then
+            BUILD_DIR="./dist"
+          else
+            echo "错误：未找到构建输出目录（dist 或 .vitepress/dist）"
+            exit 1
+          fi
+          echo "使用构建目录: $BUILD_DIR"
+
+          # 定义打包文件名（包含 run_id 便于区分）
+          PACKAGE_NAME="build-${{ github.run_id }}.tar.gz"
+          echo "PACKAGE_NAME=$PACKAGE_NAME" >> $GITHUB_ENV
+          echo "BUILD_DIR=$BUILD_DIR" >> $GITHUB_ENV
+
+          # 进入构建目录的父目录打包，保持目录结构
+          cd $(dirname $BUILD_DIR)
+          tar -czf ${{ runner.temp }}/$PACKAGE_NAME $(basename $BUILD_DIR)
+          echo "打包完成: ${{ runner.temp }}/$PACKAGE_NAME"
+
+      # ---------- 上传打包文件为 GitHub 工件 ----------
+      - name: 上传构建产物工件
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-site-${{ github.run_id }}
+          path: ${{ runner.temp }}/build-${{ github.run_id }}.tar.gz
+          retention-days: 7
+          if-no-files-found: error
+
       # ---------- 部署阶段 ----------
       - name: 设置 SSH 代理
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
@@ -103,30 +139,35 @@ jobs:
         run: |
           ssh-keyscan -H miragedge.top >> ~/.ssh/known_hosts
 
-      - name: 部署到服务器
+      - name: 部署到服务器（压缩包方式）
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
         run: |
           # 定义远程服务器信息
           REMOTE_USER="root"
           REMOTE_HOST="miragedge.top"
           REMOTE_PORT="22"
-          REMOTE_PATH="/www/MiragEdge/build/"
+          REMOTE_PATH="/www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/"
+          PACKAGE_NAME="build-${{ github.run_id }}.tar.gz"
+          LOCAL_PACKAGE="${{ runner.temp }}/$PACKAGE_NAME"
 
-          # 自动探测构建输出目录
-          if [ -d "./dist" ]; then
-            BUILD_DIR="./dist"
-          elif [ -d "./.vitepress/dist" ]; then
-            BUILD_DIR="./.vitepress/dist"
-          else
-            echo "错误：未找到构建输出目录（dist 或 .vitepress/dist）"
-            exit 1
-          fi
-          echo "使用构建目录: $BUILD_DIR"
+          # 1. 确保远程目标目录存在
+          ssh -p $REMOTE_PORT ${REMOTE_USER}@${REMOTE_HOST} "mkdir -p ${REMOTE_PATH}"
 
-          # 确保远程目录存在并清空（等价于 --delete）
-          ssh -p $REMOTE_PORT ${REMOTE_USER}@${REMOTE_HOST} "mkdir -p ${REMOTE_PATH} && rm -rf ${REMOTE_PATH}*"
+          # 2. 上传压缩包到远程服务器临时位置（如 /tmp）
+          scp -P $REMOTE_PORT $LOCAL_PACKAGE ${REMOTE_USER}@${REMOTE_HOST}:/tmp/$PACKAGE_NAME
 
-          # 使用 scp 递归复制所有文件（包括隐藏文件）
-          scp -P $REMOTE_PORT -r ${BUILD_DIR}/. ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}
+          # 3. 远程解压到目标目录并清理
+          ssh -p $REMOTE_PORT ${REMOTE_USER}@${REMOTE_HOST} "
+            set -e
+            echo '解压中...'
+            # 清空目标目录（保留目录本身）
+            rm -rf ${REMOTE_PATH}*
+            # 解压到目标目录（假设包内包含一个顶层目录，需 strip 第一层）
+            tar -xzf /tmp/$PACKAGE_NAME -C ${REMOTE_PATH} --strip-components=1
+            # 删除临时压缩包
+            rm -f /tmp/$PACKAGE_NAME
+            echo '解压完成，目录内容：'
+            ls -la ${REMOTE_PATH}
+          "
 
           echo "部署完成！"
