@@ -103,6 +103,12 @@ jobs:
         run: |
           ssh-keyscan -H miragedge.top >> ~/.ssh/known_hosts
 
+      - name: 安装 rsync 工具
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rsync
+
       - name: 部署到服务器
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
         run: |
