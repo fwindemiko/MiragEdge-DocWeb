@@ -36,7 +36,7 @@
         :alt="alt || 'Image'"
         :style="imageStyle"
         :class="{ 'loaded': loaded }"
-        :loading="loadingAttr"          <!-- 动态绑定 loading 属性 -->
+        :loading="loadingAttr"
         @load="onImageLoad"
         @error="onImageError"
       />
