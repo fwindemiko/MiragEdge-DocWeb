@@ -24,6 +24,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
+          fetch-depth: 0   # 0 表示拉取所有分支和历史记录, 以确保获取完整的提交历史和标签信息
 
       - name: 安装npm依赖包
         run: npm ci
