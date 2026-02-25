@@ -272,12 +272,12 @@ export default defineConfig({
           text: '📌 必看指南',
           collapsed: false,
           items: [
-            { text: '✅ 玩家审核', link: '/manual/review' },
+            { text: '✅ 欢迎朋友', link: '/manual/review' },
             { text: '⚖️ 玩家守则', link: '/manual/eula' },
-            { text: '🔗 入服方法', link: '/manual/tutorial/serverjoin' },
             { text: '💾 白名单系统', link: '/manual/tutorial/whitelist' },
-            { text: '🔌 客户端安装', link: '/manual/tutorial/clientinstall' },
-            { text: '🎮 官方语音频道', link: '/manual/tutorial/voicechannel' },
+            { text: '🔗 入服方法', link: '/manual/tutorial/serverjoin' },
+            { text: '📱 手机必看', link: '/manual/tutorial/bedrock' },
+            { text: '🎮 语音频道', link: '/manual/tutorial/voicechannel' },
           ]
         },
         {
@@ -290,26 +290,15 @@ export default defineConfig({
         },
         {
           items: [
-            {
-              text: '⚡️ 生电与特性',
-              link: '/manual/redstone_mechanism'
-            },
+            { text: '⚡️ 生电与特性', link: '/manual/redstone_mechanism' },
           ]
         },
         {
           items: [
-            {
-              text: '🌏 世界观故事',
-              link: '/manual/other/worldview'
-            },
-            {
-              text: '❓ 常见问题',
-              link: '/manual/faq'
-            },
-            {
-              text: '💬 QQ 群组',
-              link: '/manual/qq_group'
-            },
+            { text: '🔌 客户端安装', link: '/manual/tutorial/clientinstall' },
+            { text: '💬 QQ 群组', link: '/manual/qq_group' },
+            { text: '🌏 世界观故事', link: '/manual/other/worldview' },
+            { text: '❓ 常见问题', link: '/manual/faq' },
         {
           text: '🚩 历史事件记录',
           collapsed: true,
