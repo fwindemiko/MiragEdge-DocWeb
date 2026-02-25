@@ -8,17 +8,17 @@
   "theme_color": "#3c8772",
   "icons": [
     {
-      "src": "/title_img/xingjiu.jpg",
+      "src": "/title_img/xingjiu.png",
       "sizes": "16x16",
       "type": "image/jpeg"
     },
     {
-      "src": "/title_img/xingjiu.jpg",
+      "src": "/title_img/xingjiu.png",
       "sizes": "32x32",
       "type": "image/jpeg"
     },
     {
-      "src": "/title_img/xingjiu.jpg",
+      "src": "/title_img/xingjiu.png",
       "sizes": "192x192",
       "type": "image/jpeg"
     },

@@ -8,7 +8,7 @@ hero:
   text: "Minecraft生存服务器"
   tagline: 👼🏻远离困恼之地（锐界）和天堂般的境地（幻境），在数字荒漠中打造一片绿洲，让每个玩家都能找到属于自己的幻境
   image:
-    src: /images/MiragEdge.png
+    src: /avatars/MiragEdge.png
     alt: MiragEdge
   actions:
     - theme: brand
@@ -83,15 +83,15 @@ import { onMounted, onUnmounted, nextTick } from 'vue'
 
 // 普通封面图片列表
 const normalImages = [
-  '/title_img/mai.png',
-  '/title_img/mai2.png',
-  '/title_img/emoji1.png',
-  '/title_img/emoji2.png',
-  '/title_img/emoji3.png',
+  '/title_img/icon-1.png',
+  '/title_img/icon-1.png',
+  '/title_img/icon-1.png',
+  '/title_img/icon-2.png',
+  '/title_img/icon-3.png',
 ]
 
 // 隐藏款图片（出现概率是其他图片的1/10）
-const hiddenImage = '/title_img/dis.png'
+const hiddenImage = '/title_img/icon-dis.png'
 
 let animationFrameId = null
 let particles = []
@@ -114,7 +114,7 @@ onMounted(async () => {
     '.VPHomeHero .VPImage img',
     '.VPHomeHero img',
     'main .VPImage img',
-    '[alt="MaiBot"]'
+    '[alt="xingjiu"]'
   ]
   
   let heroImage = null
@@ -126,7 +126,7 @@ onMounted(async () => {
   // 设置图片的函数
   const setImage = (imgElement, imageSrc) => {
     imgElement.src = imageSrc
-    imgElement.alt = 'MaiBot'
+    imgElement.alt = 'xingjiu'
     // 如果是 emoji4.png，缩放到 1.5 倍
     if (imageSrc.includes('emoji4.png')) {
       imgElement.style.transform = 'scale(1.5)'
