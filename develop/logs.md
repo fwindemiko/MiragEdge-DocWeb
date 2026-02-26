@@ -587,7 +587,7 @@
   - 飞行时脚底有绿色粒子效果，大会员玩家可自定义粒子
   - 计划通过每日任务/委托任务系统添加时间获取方式
 
-![每日任务挑战 - 来赚点外快？](/images/server-log/meirirenwutiaozhan.png)
+![每日任务挑战 - 来赚点外快？](https://cloud.miragedge.top/d/localhost/Picture/web_image/server-log/meirirenwutiaozhan.png?sign=R-K6PD5PmnVQn1XjjRpT6eW7JmeOci18ECgWoU7dRfA=:0)
 *每日任务挑战 - 来赚点外快？*
 
 #### 游戏优化更新
@@ -597,7 +597,7 @@
 - 修改广告牌显示的货币为灵叶
 - 其他细节优化...
 
-![基岩版表单 - 更好的文字配色](/images/server-log/befrom.png)
+![基岩版表单 - 更好的文字配色](https://cloud.miragedge.top/d/localhost/Picture/web_image/server-log/befrom.png?sign=y-9qsCQuH2jBpZw3hGulpC3bviq65TzF1bQxMz5J6Pk=:0)
 *基岩版表单 - 更好的文字配色*
 
 ### V.0.2.12
@@ -666,7 +666,7 @@
   - 更新群聊个人信息卡片配色（贴合锐界幻境主题）
   - 添加开启菜单时的烟花特效
 
-![个人信息卡片 - 全新幻境主题配色](/images/server-log/gerenxinxikapian.png)
+![个人信息卡片 - 全新幻境主题配色](https://cloud.miragedge.top/d/localhost/Picture/web_image/server-log/gerenxinxikapian.png?sign=CWftoCoWmd4lK8CdRObo1UjRb62K8QbtVG8wfRPxg8Y=:0)
 *个人信息卡片 - 全新幻境主题配色*
 
 ##### 内容调整
@@ -681,10 +681,10 @@
     > 功能：支持图像/文档识别，持续更新知识库
   - 关闭狐钰星翼助手的免费AI功能
 
-![星玖姬多模态助手](/images/server-log/xingjiurenshe.png)
+![星玖姬多模态助手](https://cloud.miragedge.top/d/localhost/Picture/web_image/server-log/xingjiurenshe.png?sign=Eak1Tj0c4kEob70V8ToJBWJRT5iAxuORKeK8bEyYNLw=:0)
 *星玖姬多模态助手*
 
-![多模态交互功能演示](/images/server-log/xingjiu-features.png)
+![多模态交互功能演示](https://cloud.miragedge.top/d/localhost/Picture/web_image/server-log/xingjiu-features.png?sign=iLCtNSsnJi1Z3Ophx3KH78WC5hB67NlvSQ95xhqjbmo=:0)
 *多模态交互功能演示*
 
 ### V.0.2.9
@@ -809,7 +809,7 @@
     - 自动清除连续 **6个月未上线** 玩家的领地数据（长期未上线玩家及时登录刷新）
     - 新玩家第一次放置箱子时不再自动创建5*5的领地
 
-![签到奖励通过邮件发放](/images/server-log/singin_mail.png)
+![签到奖励通过邮件发放](https://cloud.miragedge.top/d/localhost/Picture/web_image/server-log/singin_mail.png?sign=7v2mmCUqGlChCFaCn7Ap9bRpESyI_jh2L5ef3pMCXMA=:0)
 *新的邮件系统对基岩版更加友好*
 
 ### V.0.2.2
@@ -834,7 +834,7 @@
   - 修复在线时间奖励领取失败及消息失败的问题
   - 取消Java版菜单隐藏玩家物品栏的操作避免可能的吞物品问题
 
-![Java版的新MOTD](/images/server-log/NewMOTD.png)
+![Java版的新MOTD](https://cloud.miragedge.top/d/localhost/Picture/web_image/server-log/NewMOTD.png?sign=iuuKplMzN0GtEjpfPCt_ow7Oh5xwYU-K7XOrY8X3s1Y=:0)
 *Java版的新MOTD*
 
 ### V.0.2.1
@@ -951,7 +951,7 @@
   - 完成更多食物拓展贴图制作
   - 实现基岩版兼容更多食物拓展材质包
 
-![更多食物兼容](/images/server-log/food-ia.png)
+![更多食物兼容](https://cloud.miragedge.top/d/localhost/Picture/web_image/server-log/food-ia.png?sign=7bQCRjQmPa47MAvMndgUFk3zHJUw3H-ca3GpaW7HfDI=:0)
 *基岩版和Java版的IA材质界面*
 
 #### 网站体验更新
@@ -985,7 +985,7 @@
   - 社交功能修复：
     - 恢复QQ群-服务器消息互通功能
 
-![角色交互演示](/images/server-log/lay-sit.png)
+![角色交互演示](https://cloud.miragedge.top/d/localhost/Picture/web_image/server-log/lay-sit.png?sign=VOqvG8H9WBlSuWJTy7z2NlAx8n4wCogH0fpf_2F9THM=:0)
 *新增角色动作与交互功能展示*
 
 ### V.0.0.3
