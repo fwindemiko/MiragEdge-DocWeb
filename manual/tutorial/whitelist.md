@@ -49,4 +49,4 @@
 
 ## 四、更多群内机器人指令
 如需了解群服互通、机器人其他功能（如查服务器状态、领福利等），可查看详细教程：  
-[QQ机器人 & 群服互通功能教程](https://manual/function/qqbot.md)
+[QQ机器人 & 群服互通功能教程](https://miragedge.top/manual/function/qqbot)
