@@ -137,6 +137,11 @@ jobs:
           if-no-files-found: error
 
       # ---------- 部署阶段 ----------
+      - name: 测试 SSH 连接
+        run: |
+          nc -zv 110.42.45.207 22 || echo "端口不通"
+          ssh-keyscan -H 110.42.45.207 -v 2>&1  # 显示详细输出
+
       - name: 设置 SSH 代理
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
         uses: webfactory/ssh-agent@v0.5.3
