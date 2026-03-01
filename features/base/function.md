@@ -4,7 +4,7 @@
 也叫方块银行，建筑玩家的最爱，可以低价、大量获得基础建筑方块(还能用来赚钱？)
 
 <SmartImage 
-  src="https://cloud.miragedge.top/d/web_image/features/base/建材等价交换.png" 
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/建材等价交换.png" 
   alt="建材等价交换"
   caption="建材等价交换"
   maxWidth="350px"
@@ -17,7 +17,7 @@
 对着盔甲架 蹲下+右键 (基岩版为 蹲下+长按)，可打开编辑界面，控制盔甲架的大小、姿势、无敌、发光、隐形、放置物品等
 
 <SmartImage 
-  src="https://cloud.miragedge.top/d/web_image/features/base/盔甲架编辑器.png" 
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/盔甲架编辑器.png" 
   alt="盔甲架编辑器"
   caption="盔甲架编辑器"
   maxWidth="350px"
