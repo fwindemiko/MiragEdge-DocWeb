@@ -25,7 +25,7 @@
 - 发送 `菜单`
 
 <SmartImage 
-  src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/function/%E5%B8%AE%E5%8A%A9%E8%8F%9C%E5%8D%95.png?sign=On3tI4xsX2fUzQeKjvMubBsECevMaCBUaESAGSNKYPY=:0" 
+  src="https://cloud.miragedge.top/d/Dev/web_image/msreg/function/%E5%B8%AE%E5%8A%A9%E8%8F%9C%E5%8D%95.png" 
   alt="帮助菜单"
   caption="帮助菜单"
   maxWidth="350px"
@@ -34,7 +34,7 @@
 ## 图片展示
 
 <SmartImage 
-  src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/function/%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF.png?sign=3DV7wDaj8yFFofckzRFl3w85LnptnBzi0kaeVRXm_ls=:0" 
+  src="https://cloud.miragedge.top/d/Dev/web_image/msreg/function/%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF.png" 
   alt="个人信息"
   caption="个人信息"
   maxWidth="350px"

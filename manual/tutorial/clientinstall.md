@@ -56,7 +56,7 @@
 3. 使用压缩工具解压文件，完成安装。
 
 <SmartImage 
-  src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/tutorial/BEGame.png?sign=_IrI6pqdRwWUH0KZ6miJOYgzeZL8eKXWbwLznwHXaAc=:0" 
+  src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/BEGame.png" 
   alt="基岩版群文件目录"
   caption="基岩版群文件目录"
 /> 
@@ -100,22 +100,22 @@
 ① **游戏内注册**  
 直接通过游戏客户端完成注册流程  
 - 进入游戏，在游戏主界面点击设置  
-<SmartImage src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/tutorial/msreg1.png?sign=TlXUUbOe5UArs9TQzeQYoMSznWCESqeghNwZyefUvSU=:0" alt="注册" maxWidth="400px" />
+<SmartImage src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/msreg1.png" alt="注册" maxWidth="400px" />
 
 - 点击 通用 中的 档案 部分  
-<SmartImage src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/tutorial/msreg2.png?sign=OWdct0f9bDmozw_m4iYKml-rkOystmaAcJPu4LHzOOo=:0" alt="注册" maxWidth="400px" />
+<SmartImage src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/msreg2.png" alt="注册" maxWidth="400px" />
 
 - 进入档案设置后，点击【“免费”注册】  
 - 记得开启“使用移动数据”选项，可避免一些不必要的问题  
-<SmartImage src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/tutorial/msreg3.png?sign=O-wzHb-iuVTAkx2PsJ0HHAYvfPv-66UKKeJFpqYoXt8=:0" alt="注册" maxWidth="400px" />
+<SmartImage src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/msreg3.png" alt="注册" maxWidth="400px" />
 
 - 点击免费注册后，会弹出一个提示框（没有就忽略这一步）  
 - 选择“保存至Microsoft账户”（两个选项均可，建议选择）  
-<SmartImage src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/tutorial/msreg4.png?sign=O3Iiugc_uA0mOxPHla5HbsIad83k0Q5inHyXQcG_j70=:0" alt="注册" maxWidth="400px" />
+<SmartImage src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/msreg4.png" alt="注册" maxWidth="400px" />
 
 - 进入登陆界面后，点击登陆，出现以下界面，如果有账户  
 - 请直接登陆，没有账户请按提示注册  
-<SmartImage src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/tutorial/msreg5.png?sign=KBkIg2zfQ6ushRuIllGjHlOsRVyque9HIvnPg8oP6JM=:0" alt="注册" maxWidth="400px" />
+<SmartImage src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/msreg5.png" alt="注册" maxWidth="400px" />
 
 - **注册和登陆不尽相同，此步骤忽略，请自行操作（都这么大个人了别告诉我不会注册好吧）**
 
@@ -123,7 +123,7 @@
 1. 浏览器访问 [微软官网](https://account.microsoft.com/)
 2. 点击右上角头像图标
 3. 选择"创建账户"根据引导完成注册
-<SmartImage src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/tutorial/msreg6.png?sign=s1s71hPEMoTklCaYGUQcpx-tTK-fMxYkoc9YryrvNfU=:0" alt="注册" maxWidth="400px" />
+<SmartImage src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/msreg6.png" alt="注册" maxWidth="400px" />
 
 一条龙注册（没啥好讲的）
 注册完去游戏里登陆就好

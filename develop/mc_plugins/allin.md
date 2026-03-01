@@ -2,6 +2,13 @@
 
 部分为闭源插件，会无法访问仓库
 
+## FE_ABCQ
+### 基础信息: 
+- 作者：F.windEmiko (狐风轩汐)
+- 代码仓库：https://github.com/fwindemiko/FE_ABCQ
+### 功能：
+- 锐界幻境服务器的知识问答插件
+
 ## FE_RefreshPapi
 ### 基础信息: 
 - 作者：F.windEmiko (狐风轩汐)

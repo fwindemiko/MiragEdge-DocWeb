@@ -11,7 +11,7 @@
 成功进入服务器并完成注册后，游戏内会弹出绑定提示框，显示你的专属验证码（验证码为一串数字/字符，用于身份验证）。
 
 <SmartImage 
-  src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/tutorial/GameQQ.png?sign=FgRxjFHR1g0FvVTQdhiUm6rQ_bYg8JJvmdKArEFQJqQ=:0" 
+  src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/GameQQ.png" 
   alt="服内绑定提示"
   caption="服内绑定提示"
   maxWidth="400px"
@@ -23,7 +23,7 @@
 （示例：绑定 3528）
 
 <SmartImage 
-  src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/tutorial/QQLink.png?sign=DfLSvR7WW2eECIb6H_YuEWEDhf4HwPa22-6FdlLujEE=:0" 
+  src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/QQLink.png" 
   alt="交流群发送绑定验证码"
   caption="交流群发送绑定验证码"
   maxWidth="400px"
@@ -41,7 +41,7 @@
 在官方QQ交流群中发送解绑指令（具体格式可参考群内公示的“查、解绑指令示例”，或@群机器人获取指引）。
 
 <SmartImage 
-  src="https://cloud.miragedge.top/d/localhost/Picture/web_image/msreg/tutorial/QQUnLink.png?sign=GH93dMfHjGDqlJ14gRzYgAbrKVON0cZGylmig_sV2cE=:0" 
+  src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/QQUnLink.png" 
   alt="查、解绑相关指令"
   caption="查、解绑相关指令"
   maxWidth="400px"
