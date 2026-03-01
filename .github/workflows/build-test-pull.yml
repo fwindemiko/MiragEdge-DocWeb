@@ -146,14 +146,14 @@ jobs:
       - name: 添加 SSH 已知主机
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
         run: |
-          ssh-keyscan -H miragedge.top >> ~/.ssh/known_hosts
+          ssh-keyscan -H 110.42.45.207 >> ~/.ssh/known_hosts
 
       - name: 部署到服务器
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
         run: |
           # 定义远程服务器信息
           REMOTE_USER="root"
-          REMOTE_HOST="miragedge.top"
+          REMOTE_HOST="110.42.45.207"
           REMOTE_PORT="22"
           REMOTE_PATH="/www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/"
           PACKAGE_NAME="build-${{ github.run_id }}.tar.gz"
