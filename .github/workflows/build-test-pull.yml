@@ -137,6 +137,11 @@ jobs:
           if-no-files-found: error
 
       # ---------- 部署阶段 ----------
+      - name: 网络检查
+        run: |
+          ping -c 4 110.42.45.207
+          traceroute 110.42.45.207
+          curl https://ipinfo.io
       - name: 测试 SSH 连接
         run: |
           timeout 5 nc -zv 110.42.45.207 22 || echo "端口不通"
