@@ -11,7 +11,7 @@
    [点击加入交流群](https://qm.qq.com/cgi-bin/qm/qr?k=r_yUquo3bQwX3bL97RwG1aVj41WIEOI3&jump_from=webapi&authKey=A76pYGWh45XBe5V4kV5m3LWyR3XRpIl30FETYB0/scIEMeRGhIEDlQWmD5HVjSbj)
 
 ### 步骤2：进入服务器触发绑定提示
-成功进入服务器并完成注册后，游戏内会弹出绑定提示框，显示你的专属验证码（验证码为一串数字/字符，用于身份验证）。
+成功进入服务器并完成游戏登录账号注册后，会被踢出然后弹出绑定提示框，显示您的专属验证码（验证码为一串4位数字）。
 
 <SmartImage 
   src="https://cloud.miragedge.top/d/Dev/web_image/msreg/tutorial/GameQQ.png" 
