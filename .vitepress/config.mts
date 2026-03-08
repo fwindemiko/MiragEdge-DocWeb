@@ -274,6 +274,7 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: '介绍', link: '/features/adventure/mmo/info' },
+                { text: '锻造升级', link: '/features/adventure/mmo/forge' },
               ]
             },
           ]
