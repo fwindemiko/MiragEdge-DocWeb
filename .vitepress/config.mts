@@ -206,7 +206,7 @@ export default defineConfig({
       '/features/': [
         { text: '📖 玩法总览', link: '/features/index' },
         {
-          text: '⚒️ 基础内容',
+          text: '🏠 基础系统',
           collapsed: false,
           items: [
             { text: '💰 经济系统', link: '/features/base/economy' },
@@ -216,9 +216,10 @@ export default defineConfig({
           ]
         },
         {
-          text: '🌽 田园般的生活',
+          text: '🌾 田园生活',
           collapsed: false,
-          items: [ { text: '🧑‍🌾 建筑大师', link: '/features/pastoral/builder' },
+          items: [
+            { text: '🧑‍🌾 建筑大师', link: '/features/pastoral/builder' },
             {
               text: '🌼 真实季节',
               collapsed: true,
@@ -255,7 +256,7 @@ export default defineConfig({
           ]
         },
         {
-          text: '🧙‍♂️ 冒险与战斗',
+          text: '⚔️ 冒险战斗',
           collapsed: false,
           items: [
             {
@@ -288,36 +289,30 @@ export default defineConfig({
           items: [
             { text: '✅ 欢迎朋友', link: '/manual/review' },
             { text: '⚖️ 玩家守则', link: '/manual/eula' },
-            { text: '💾 白名单系统', link: '/manual/tutorial/whitelist' },
             { text: '🔗 入服方法', link: '/manual/tutorial/serverjoin' },
             { text: '📱 手机必看', link: '/manual/tutorial/bedrock' },
+            { text: '⚡️ 生电与特性', link: '/manual/redstone_mechanism' },
+            { text: '🔌 客户端安装', link: '/manual/tutorial/clientinstall' },
+            { text: '❓ 常见问题', link: '/manual/faq' },
           ]
         },
         {
           text: '🔧 附属功能教程',
           collapsed: false,
           items: [
+            { text: '💾 白名单系统', link: '/manual/tutorial/whitelist' },
             { text: '🎮 语音频道', link: '/manual/function/voicechannel' },
             { text: '🐧 群服互通机器人', link: '/manual/function/qqbot' },
             { text: '🐶 MOD拓展功能支持', link: '/manual/function/mod' },
           ]
         },
         {
-          text: '⚡️ 游戏特性',
+          text: '👥 社区交流',
           collapsed: false,
           items: [
-            { text: '⚡️ 生电与特性', link: '/manual/redstone_mechanism' },
-            { text: '📺 宣传推广', link: '/manual/promotion' },
-          ]
-        },
-        {
-          text: '🔌 其他指南',
-          collapsed: false,
-          items: [
-            { text: '🔌 客户端安装', link: '/manual/tutorial/clientinstall' },
             { text: '💬 QQ 群组', link: '/manual/qq_group' },
             { text: '🌏 世界观故事', link: '/manual/other/worldview' },
-            { text: '❓ 常见问题', link: '/manual/faq' },
+            { text: '📺 宣传推广', link: '/manual/promotion' },
           ]
         },
         {
@@ -332,15 +327,15 @@ export default defineConfig({
       ],
  
       '/develop/': [
-        { text: '📖 开发团队与介绍', link: '/develop/index' },
+        { text: '👥 开发团队', link: '/develop/index' },
         {
-          text: '🔌 原创插件开发',
+          text: '🎮 插件开发',
           collapsed: false,
           items: [
             { text: '📋 项目开发说明', link: '/develop/mc_plugins/index' },
             {
-              text: '📊 原创插件列表', 
-              collapsed: false, 
+              text: '📊 原创插件列表',
+              collapsed: false,
               items: [
                 { text: '🦊 狐风轩汐', link: '/develop/mc_plugins/fwindemiko' },
               ]
@@ -348,7 +343,7 @@ export default defineConfig({
           ]
         },
         {
-          text: '🎨 服务器插件配置编写',
+          text: '⚙️ 插件配置',
           collapsed: false,
           items: [
             { text: '贴图字符码', link: '/develop/server_configs/sticker' },
@@ -357,14 +352,14 @@ export default defineConfig({
           ]
         },
         {
-          text: '😸 服务器功能玩法设计',
+          text: '🎯 玩法设计',
           collapsed: false,
           items: [
             { text: '赛季玩法设计方案', link: '/develop/gameplay/liveops_260107' },
           ]
         },
         {
-          text: '📕 网站开发编辑',
+          text: '🌐 网站开发',
           collapsed: false,
           items: [
             { text: '自动图像组件', link: '/develop/webdev/autoimage' },
@@ -372,7 +367,7 @@ export default defineConfig({
           ]
         },
         {
-          text: '🔗 关于',
+          text: '📋 附录',
           collapsed: false,
           items: [
             { text: '📅 更新日志', link: '/develop/logs' },
