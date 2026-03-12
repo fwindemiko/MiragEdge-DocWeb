@@ -1,11 +1,20 @@
-# Dockerfile 内容
-# 基础镜像：官方最新nginx
-FROM nginx:latest
+# 基础镜像：使用具体版本的 nginx Alpine 镜像（更轻量安全）
+FROM nginx:1.25-alpine
 
-# 将自定义nginx配置替换容器默认的配置（nginx默认加载conf.d下的default.conf）
+# 安装 wget 用于健康检查
+RUN apk add --no-cache wget
+
+# 将自定义nginx配置替换容器默认的配置
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-# 暴露容器80端口（可选，仅作声明，运行时-p参数才是实际映射）
-EXPOSE 80
+# 创建健康检查文件
+RUN echo "OK" > /usr/share/nginx/html/health
 
-# nginx镜像默认启动命令为：nginx -g 'daemon off;'，无需额外编写启动命令
+# 暴露端口
+EXPOSE 80 88
+
+# 以非 root 用户运行（增强安全性）
+USER nginx
+
+# nginx 启动命令
+CMD ["nginx", "-g", "daemon off;"]

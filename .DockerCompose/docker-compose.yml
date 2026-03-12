@@ -1,53 +1,68 @@
 version: '3.8'
+
 services:
   nginx:
     build:
       context: .
-      dockerfile: Dockerfile   # 你的 Nginx Dockerfile（若使用官方 nginx:alpine 可改）
+      dockerfile: Dockerfile
     container_name: nginx
     restart: unless-stopped
     ports:
-      - "5173:80"              # miragedge.top 静态站点
-      - "5174:88"              # f.windemiko.top WordPress 站点（监听88）
+      - "${HTTP_PORT:-5173}:80"
+      - "${PHP_PORT:-5174}:88"
     volumes:
       # WordPress 目录
-      - /www/MiragEdge/fwindemiko:/web_fwindemiko:ro   # 只读挂载，Nginx 只需要读取文件
+      - /www/MiragEdge/fwindemiko:/web_fwindemiko:ro
       # 静态站点目录
       - .././build/miragedge.top:/web_miragedge:ro
       # Nginx 配置文件
       - ./default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
-      - php8                  # 确保 php8 先启动
+      php8:
+        condition: service_started
     networks:
       - miragedge-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 
   # ---------- PHP 8-FPM 服务 ----------
   php8:
-    build: ./php              # 使用自定义 Dockerfile 安装扩展
+    build: ./php
     container_name: php8
     restart: unless-stopped
     volumes:
-      - /www/MiragEdge/fwindemiko:/web_fwindemiko   # PHP 需要读写权限
+      - /www/MiragEdge/fwindemiko:/web_fwindemiko
     networks:
       - miragedge-network
-    # 可选：暴露 9000 端口（仅用于调试，非必须）
-    # ports:
-    #   - "9000:9000"
+    healthcheck:
+      test: ["CMD-SHELL", "php-fpm8 -t || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   db:
-    image: mariadb:10
+    image: mariadb:10.11
     container_name: db
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: "*L5201314x"       # 请改为强密码
-      MYSQL_DATABASE: fwindemiko              # 与 wp-config.php 中 DB_NAME 一致
-      MYSQL_USER: fwindemiko                    # 与 wp-config.php 中 DB_USER 一致
-      MYSQL_PASSWORD: 88888888            # 实际密码（与 wp-config.php 一致）
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_DATABASE: fwindemiko
+      MYSQL_USER: fwindemiko
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
     volumes:
-      - /www/MiragEdge/mysql:/var/lib/mysql             # 数据持久化
+      - /www/MiragEdge/mysql:/var/lib/mysql
     networks:
       - miragedge-network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 networks:
   miragedge-network:
-    external: true          # 确保此网络已存在（若未存在，先创建）
+    external: true
