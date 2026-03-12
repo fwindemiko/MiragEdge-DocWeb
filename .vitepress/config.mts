@@ -303,17 +303,23 @@ export default defineConfig({
           ]
         },
         {
+          text: '⚡️ 游戏特性',
+          collapsed: false,
           items: [
             { text: '⚡️ 生电与特性', link: '/manual/redstone_mechanism' },
             { text: '📺 宣传推广', link: '/manual/promotion' },
           ]
         },
         {
+          text: '🔌 其他指南',
+          collapsed: false,
           items: [
             { text: '🔌 客户端安装', link: '/manual/tutorial/clientinstall' },
             { text: '💬 QQ 群组', link: '/manual/qq_group' },
             { text: '🌏 世界观故事', link: '/manual/other/worldview' },
             { text: '❓ 常见问题', link: '/manual/faq' },
+          ]
+        },
         {
           text: '🚩 历史事件记录',
           collapsed: true,
@@ -323,8 +329,6 @@ export default defineConfig({
             { text: '存档数据重置', link: '/manual/active/20251017' },
           ]
         },
-          ],
-        }
       ],
  
       '/develop/': [
@@ -409,11 +413,11 @@ export default defineConfig({
       },
     },
     
-    // 编辑链接
-    //editLink: {
-    //  pattern: 'https://github.com/fwindemiko/MiragEdge-DocWeb',
-    //  text: '在 GitHub 上编辑此页'
-    //},
+    // 编辑链接 - 动态跳转到当前页的GitHub编辑页
+    editLink: {
+      pattern: 'https://github.com/fwindemiko/MiragEdge-DocWeb/edit/main/:path',
+      text: '在 GitHub 上编辑此页'
+    },
     
     // 深色模式切换
     darkModeSwitchLabel: '外观',
