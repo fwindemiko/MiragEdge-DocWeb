@@ -1,67 +1,137 @@
 # 建筑大师
 
-我们为建筑师制作了许多便捷的功能！  
-您可以在“梦始之空”这个生存世界建造家园，这里有奇幻的地形和结构，重点是：它永不重置！  
+> 🏗️ 为建筑师准备的各种便捷功能！
 
-## 建材等价交换
-也叫方块银行，建筑玩家的最爱，可以低价、大量获得基础建筑方块(还能用来赚钱？)
+**推荐建造世界**：「梦始之空」- 奇幻地形、永不重置！
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/建材等价交换.png" 
+---
+
+## 目录
+
+- [建筑便利](#建筑便利)
+- [建筑工具](#建筑工具)
+- [便捷道具](#便捷道具)
+
+---
+
+## 建筑便利
+
+### 📦 建材等价交换
+
+也叫**方块银行**，建筑玩家的最爱！
+
+| 功能 | 说明 |
+|------|------|
+| 💰 **低价获取** | 大量基础建筑方块 |
+| 💵 **赚钱功能** | 还能用来赚钱！ |
+
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/建材等价交换.png"
   alt="建材等价交换"
   caption="建材等价交换"
-  maxWidth="350px"
+  maxWidth="300px"
+  radius="8px"
+  shadow
 />
 
-## 盔甲架编辑器
-想用盔甲架制作各种有趣的效果？  
-您可以对着盔甲架 蹲下+右键 (基岩版为 蹲下+长按)，即可打开编辑界面，控制盔甲架的大小、姿势、无敌、发光、隐形、放置物品等  
+---
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/盔甲架编辑器.png" 
+### 🛡️ 盔甲架编辑器
+
+制作各种有趣的盔甲架展示！
+
+| 操作 | 说明 |
+|------|------|
+| 🎮 **Java版** | 蹲下 + 右键 |
+| 📱 **基岩版** | 蹲下 + 长按 |
+
+可控制：大小、姿势、无敌、发光、隐形、放置物品等
+
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/盔甲架编辑器.png"
   alt="盔甲架编辑器"
   caption="盔甲架编辑器"
-  maxWidth="350px"
+  maxWidth="300px"
+  radius="8px"
+  shadow
 />
 
-## 铁块电梯
-有时候建筑的内部空间容不下一个完整的楼梯。  
-只要在垂直方向放置铁块，站在铁块上跳跃和蹲下即可上下传送，两铁块间最大距离为14格。  
+---
 
-## 有用的道具
+### 🛗 铁块电梯
 
-### 抹刀
-想做一条有随机渐变方块的小路？您可以使用“抹刀”  
-手拿该物品右键会从背包中随机放置一个方块  
-背包中右键该物品可切换材料来源(不兼容基岩版):  
-- HOTBAR: 快捷栏
-- FIRST_ROW: 背包第一行物品
-- SECOND_ROW: 背包第二行物品
-- THIRD_ROW: 背包第三行物品
+垂直交通的绝佳方案！
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/pastoral/builder/trowel.png" 
-  alt="合成抹刀"
-  caption="合成抹刀"
-  maxWidth="350px"
+| 参数 | 数值 |
+|------|------|
+| 📏 **两格最大距离** | 14 格 |
+| 🎮 **操作** | 跳跃 = 上升，蹲下 = 下降 |
+
+> 💡 适合内部空间有限的建筑喵~
+
+---
+
+## 便捷道具
+
+### 🖌️ 抹刀
+
+制作随机渐变方块小路的神器！
+
+| 功能 | 说明 |
+|------|------|
+| 🎯 **右键** | 从背包随机放置方块 |
+| 🔄 **切换来源** | 右键可切换材料来源 |
+
+**材料来源模式**：
+- HOTBAR - 快捷栏
+- FIRST_ROW - 背包第一行
+- SECOND_ROW - 背包第二行
+- THIRD_ROW - 背包第三行
+
+> ⚠️ 不兼容基岩版
+
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/pastoral/builder/trowel.png"
+  alt="抹刀合成"
+  caption="合成配方"
+  maxWidth="250px"
+  radius="8px"
+  shadow
 />
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/pastoral/builder/trowel_show.gif" 
-  alt="抹刀功能展示"
-  caption="抹刀功能展示"
-  maxWidth="350px"
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/pastoral/builder/trowel_show.gif"
+  alt="抹刀演示"
+  caption="功能展示"
+  maxWidth="300px"
+  radius="8px"
+  shadow
 />
 
-### 锉刀
-摆放出特定角度的方块很麻烦。  
-使用“锉刀” 右键墙壁、栅栏、玻璃、楼梯等方块，可以改变形态   
-功能类似“调试棒”  
+---
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/pastoral/builder/file.png" 
-  alt="合成锉刀"
-  caption="合成锉刀"
-  maxWidth="350px"
+### 🔧 锉刀
+
+调整方块角度，告别繁琐摆放！
+
+| 功能 | 说明 |
+|------|------|
+| 🎯 **操作** | 右键墙壁、栅栏、玻璃、楼梯等 |
+| ✅ **效果** | 改变方块形态 |
+| 📌 **类似** | 调试棒功能 |
+
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/pastoral/builder/file.png"
+  alt="锉刀合成"
+  caption="合成配方"
+  maxWidth="250px"
+  radius="8px"
+  shadow
 />
 
+---
+
+> 📌 **相关页面推荐**：
+> - [独特功能](./function.md) - 更多实用功能
+> - [领地系统](./dom.md) - 保护你的建筑
+> - [季节系统](./pastoral/seasons/info.md) - 探索世界风景
