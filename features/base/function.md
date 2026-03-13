@@ -1,136 +1,263 @@
 # 独特功能
-区别于原版游戏，我们加入了许多有趣或有用的功能及特性。
 
-## 世界垃圾桶
-> 最受好评的功能！开局装备全靠捡~  
-
-旋风狐扫地(清理掉落物)后会把清理的物品加入到垃圾桶中。  
-扫地周期为20分钟一次，扫地5次后会刷新垃圾桶。  
-**不会被扫地清理的物品**：各类武器、盔甲、工具、矿物及所有潜影盒。  
-**不会进入垃圾桶(直接消失)的物品**：量大的基础方块、装饰植物、地毯、铁轨与种子。
-
-## 史莱姆桶
-用空铁桶右键小史莱姆可抓获和放下  
-（也许能用来做菜？）
-
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/slime_ball.gif" 
-  alt="兴奋的史莱姆桶"
-  caption="兴奋的史莱姆桶"
-  maxWidth="350px"
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/hero.png"
+  alt="独特功能"
+  caption="锐界幻境 · 独特功能"
+  width="600"
+  radius="12px"
+  shadow
+  border
 />
 
-## 经验之瓶
-可以合成“空的经验之瓶”  
-拿在手上右击可存储经验  
-根据经验的多少转变成 大、中、小 三种经验之瓶，存入的过程存在损耗  
-喝下即可获得经验值  
+> 🎮 区别于原版游戏，锐界幻境添加了许多有趣且实用的功能，快来探索吧~
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/empty_xp_bottle.png" 
-  alt="合成“空的经验之瓶”"
-  caption="合成“空的经验之瓶”"
-  maxWidth="350px"
+---
+
+## 目录
+
+- [生存便利](#生存便利)
+- [农业相关](#农业相关)
+- [建筑与红石](#建筑与红石)
+- [社交与娱乐](#社交与娱乐)
+- [世界优化](#世界优化)
+
+---
+
+## 生存便利
+
+### 🗑️ 世界垃圾桶
+
+| 信息 | 说明 |
+|------|------|
+| 🕐 **扫地周期** | 每 20 分钟一次 |
+| 🔄 **刷新周期** | 扫地 5 次后刷新 |
+| ⭐ **最受好评** | 开局装备全靠捡！ |
+
+**不会被清理的物品**：武器、盔甲、工具、矿物、潜影盒
+
+**直接消失的物品**：大量基础方块、装饰植物、地毯、铁轨、种子
+
+---
+
+### 🍾 经验之瓶
+
+可以将经验存储在瓶子中，随身携带！
+
+| 特点 | 说明 |
+|------|------|
+| 📦 **存储方式** | 右击手持的空经验瓶即可存储 |
+| 📊 **容量变化** | 根据经验多少变为大/中/小三种 |
+| ⚠️ **损耗说明** | 存入过程存在一定损耗 |
+| 💪 **使用方法** | 喝下即可获得经验值 |
+
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/empty_xp_bottle.png"
+  alt="经验之瓶合成"
+  caption="合成配方"
+  maxWidth="300px"
+  radius="8px"
+  shadow
 />
 
-## 镰刀
-各种材质的镰刀  
-手持可提升攻速和伤害  
-对农田右键有范围收获和补种的效果  
-金镰刀是性价比最高的，木头和石头材质收获的范围太小了。  
+---
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/sickle.png" 
-  alt="各种材质的镰刀"
-  caption="各种材质的镰刀"
-  maxWidth="350px"
+### 🗡️ 击杀掉头
+
+玩家被其他玩家击杀后，有 **10% 概率**掉落头颅！
+
+> 激烈PVP后的"战利品"，想想就刺激喵~
+
+---
+
+## 农业相关
+
+### 🪣 史莱姆桶
+
+用**空铁桶**右键小史莱姆即可抓获！
+
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/slime_ball.gif"
+  alt="史莱姆桶演示"
+  caption="快乐的史莱姆桶"
+  maxWidth="300px"
+  radius="8px"
+  shadow
 />
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/sickle_make.png" 
-  alt="合成金镰刀"
-  caption="合成金镰刀"
-  maxWidth="350px"
+> 🍳 也许能用来做菜？（划掉）
+
+---
+
+### 🌾 镰刀
+
+各种材质的镰刀，是农夫的好帮手！
+
+| 材质 | 收获范围 | 性价比 |
+|------|----------|--------|
+| 🪵 木头 | 小 | ❌ 不推荐 |
+| 🪨 石头 | 小 | ❌ 不推荐 |
+| ⚪ 铁 | 中等 | ✅ 推荐 |
+| 💎 钻石 | 大 | ⭐ 最佳 |
+| 🟡 金 | 最大 | ⭐⭐ 最高性价比！ |
+
+**功能**：
+- ⚔️ 提升攻击速度与伤害
+- 🌾 右键农田可**范围收获 + 自动补种**
+
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/sickle_show.gif"
+  alt="镰刀演示"
+  caption="镰刀收获演示"
+  maxWidth="300px"
+  radius="8px"
+  shadow
 />
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/sickle_show.gif" 
-  alt="镰刀的收获和补种"
-  caption="镰刀的收获和补种"
-  maxWidth="350px"
+---
+
+### 🥕 优化种植
+
+右键点击**完全长大的植物**即可：
+- ✅ 立即收获
+- ✅ 自动重新种植
+- ✅ 获得**额外产出**（多件物品概率提升）
+
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/better-harvesting.gif"
+  alt="优化种植演示"
+  caption="一键收获+种"
+  maxWidth="300px"
+  radius="8px"
+  shadow
 />
 
-## 隐形展示框
-用剪刀右键点击展示框可使其隐形
+---
 
-## 土径加速
-小路加速功能，在土径上行走可获得加速效果，现在真的有必要修一条路了！
+## 建筑与红石
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/土径加速.gif" 
-  alt="土径加速"
-  caption="土径加速"
-  maxWidth="350px"
-/>
+### 🚪 双开门
 
-## 跳过夜晚
-一个世界中，当有20%的玩家睡觉就可加速跳过夜晚。
+两个门组成的大门，**右键**或**红石信号**均可同时打开！
 
-## 箱子整理
-激活按钮后，以按钮为中心周围3*3范围的箱子会自动整理物品，冷却时间1000ms
-
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/箱子整理.gif" 
-  alt="箱子整理"
-  caption="箱子整理"
-  maxWidth="350px"
-/>
-
-## 双开门
-两个门组成的大门，右键可同时打开，红石激活也是一样。
-
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/double-doors.gif" 
-  alt="双开门"
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/double-doors.gif"
+  alt="双开门演示"
   caption="双开门"
-  maxWidth="350px"
+  maxWidth="300px"
+  radius="8px"
+  shadow
 />
 
-## 优化种植
-右键点击完全长大的植物可立即收获并重新种植，且获得多件物品的概率提升。
+---
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/better-harvesting.gif" 
-  alt="优化种植"
-  caption="优化种植"
-  maxWidth="350px"
+### 🖼️ 隐形展示框
+
+用**剪刀**右键点击展示框即可使其隐形~
+
+---
+
+### 📦 箱子整理
+
+激活按钮后，以按钮为中心 **3×3 范围**内的箱子会自动整理物品！
+
+| 参数 | 数值 |
+|------|------|
+| 📏 **整理范围** | 3×3 格 |
+| ⏱️ **冷却时间** | 1000ms |
+
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/箱子整理.gif"
+  alt="箱子整理演示"
+  caption="自动整理"
+  maxWidth="300px"
+  radius="8px"
+  shadow
 />
 
-## 爆炸保护
-凋零和苦力怕爆炸后会有“时间回溯”效果（被炸后会慢慢恢复原样）
+---
 
-<SmartImage 
-  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/creeper-protection.gif" 
-  alt="苦力怕爆炸保护"
-  caption="苦力怕爆炸保护"
-  maxWidth="350px"
+## 社交与娱乐
+
+### 🌙 跳过夜晚
+
+当世界中有 **≥20%** 的玩家睡觉时，即可加速跳过夜晚！
+
+> 再也不用熬夜等天亮啦~
+
+---
+
+### 🐱 喵式聊天
+
+使用**星玖姬向导菜单**，进入设置页面即可开启「喵式聊天」功能！
+
+- ✨ 会在聊天末尾自动添加「喵~」
+- ❌ 不影响系统答题
+- 🐾 可爱捏！
+
+---
+
+### 💬 展示物品
+
+在聊天栏发送 `%i%` 即可把手持物品信息展示在聊天栏中~
+
+---
+
+## 世界优化
+
+### 🚶 土径加速
+
+在**土径**上行走可获得移动加速！现在真的有必要修一条路了！
+
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/土径加速.gif"
+  alt="土径加速演示"
+  caption="土径加速"
+  maxWidth="300px"
+  radius="8px"
+  shadow
 />
 
-## 过于昂贵
-取消铁砧“过于昂贵”的限制
+---
 
-## 配方解锁
-玩家入服后自动解锁所有合成配方，不用一个一个解锁了。
+### 💥 爆炸保护
 
-## 展示物品
-聊天栏发送 `%i%` 可把手持物品的信息展示在聊天栏中。
+**凋零**和**苦力怕**爆炸后，被破坏的方块会**慢慢恢复原样**！
 
-## 击杀掉头
-玩家被其他玩家击杀时，有10%的概率掉落脑袋。
+<SmartImage
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/creeper-protection.gif"
+  alt="爆炸保护演示"
+  caption="时间回溯保护"
+  maxWidth="300px"
+  radius="8px"
+  shadow
+/>
 
-## 树叶快速腐烂
-砍伐自然生成的树木后(树叶没有原木挨着)，树叶会以肉眼可见的速度快速凋落消失。
+> 🏠 不用担心家被炸没了~
 
-## 喵式聊天
-使用星玖姬向导菜单，进入设置页面，找到喵式聊天功能，点击即可开启。会自动在聊天末尾添加“喵”，不影响答题，可爱捏。
+---
 
+### 🧱 树叶快速腐烂
+
+砍伐自然生成的树木后（树叶没有原木挨着），树叶会**快速凋落消失**！
+
+> 清理树叶再也不是麻烦事喵~
+
+---
+
+### ⚒️ 配方解锁
+
+玩家入服后**自动解锁所有合成配方**，不用一个一个慢慢解锁了！
+
+---
+
+### ⚖️ 铁砧无限制
+
+取消铁砧「过于昂贵」的限制，可以随意使用铁砧进行物品合并！
+
+---
+
+> 📌 **相关页面推荐**：
+> - [季节系统](./pastoral/seasons/info.md) - 探索四季变换的魅力
+> - [附魔系统](./adventure/enchantments/info.md) - 打造你的神兵利器
+> - [传送系统](./base/teleport.md) - 快速穿梭各地
