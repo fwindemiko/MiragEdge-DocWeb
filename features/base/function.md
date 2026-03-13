@@ -4,7 +4,7 @@
   src="https://cloud.miragedge.top/d/Dev/web_image/features/base/function/hero.png"
   alt="独特功能"
   caption="锐界幻境 · 独特功能"
-  width="600"
+  width="300"
   radius="12px"
   shadow
   border

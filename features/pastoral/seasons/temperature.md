@@ -1,10 +1,10 @@
 # 温度系统
 
 <SmartImage
-  src="/images/features/temperature.png"
+  src="https://cloud.miragedge.top/d/Dev/web_image/features/seasons/temperature.png"
   alt="温度系统"
   caption="温度系统"
-  width="400"
+  width="300"
   radius="12px"
   shadow
   border
