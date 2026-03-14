@@ -260,6 +260,10 @@ export default defineConfig({
           collapsed: false,
           items: [
             {
+              text: '🧟 等级怪物',
+              link: '/features/adventure/levelledmobs',
+            },
+            {
               text: '✨ 更多附魔',
               collapsed: true,
               items: [
