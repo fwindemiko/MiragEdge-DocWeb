@@ -443,7 +443,7 @@ export default defineConfig({
   ],
   
   // 自定义 Sitemap(搜索映射表) 生成
-  //sitemap: {
-  //  hostname: 'https://docs.miraged.ge'
-  //}
+  sitemap: {
+    hostname: 'https://miragedge.top'
+  }
 })
