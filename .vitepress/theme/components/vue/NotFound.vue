@@ -1,5 +1,10 @@
 <template>
   <div class="not-found">
+    <!-- 角落装饰元素 -->
+    <CornerSakura />
+    <CornerStars />
+    <CornerQuotes />
+
     <div class="cat-container">
       <div class="cat">
         <div class="cat-ear">

@@ -6,6 +6,15 @@ import DefaultTheme from "vitepress/theme";
 import { ref, watch, nextTick, provide, computed } from "vue";
 import Contributors from './Contributors.vue';
 import NotFound from './NotFound.vue';
+import CornerStars from './CornerStars.vue';
+import CornerQuotes from './CornerQuotes.vue';
+import CornerBubbles from './CornerBubbles.vue';
+import CornerSakura from './CornerSakura.vue';
+import CornerNotes from './CornerNotes.vue';
+import CornerLeaves from './CornerLeaves.vue';
+import CornerSurprise from './CornerSurprise.vue';
+import CornerFireflies from './CornerFireflies.vue';
+import CornerClickEffect from './CornerClickEffect.vue';
 
 const { Layout } = DefaultTheme;
 const { route } = useRouter();
@@ -14,6 +23,20 @@ const transitionName = ref('scale-in');
 
 // 检测是否为 404 页面
 const is404 = computed(() => page.value.isNotFound);
+
+// 随机角落装饰 - 根据路由生成一个随机种子，只在部分页面显示
+const randomCorner = computed(() => {
+  const path = route.path;
+  // 使用路径字符生成一个伪随机数
+  const hash = path.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  // 只有 10% 的页面会显示装饰
+  const show = (hash % 10) < 1;
+  if (!show) return null;
+
+  // 根据 hash 选择显示哪个组件
+  const components = ['stars', 'quotes', 'bubbles', 'sakura', 'notes', 'leaves', 'fireflies'];
+  return components[hash % components.length];
+});
 
 /**
  * 滚动到页面顶部
@@ -80,6 +103,17 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }) => {
 
 <template>
   <div class="router-wrapper">
+    <!-- 随机角落装饰元素 -->
+    <CornerStars v-if="randomCorner === 'stars'" />
+    <CornerQuotes v-if="randomCorner === 'quotes'" />
+    <CornerBubbles v-if="randomCorner === 'bubbles'" />
+    <CornerSakura v-if="randomCorner === 'sakura'" />
+    <CornerNotes v-if="randomCorner === 'notes'" />
+    <CornerLeaves v-if="randomCorner === 'leaves'" />
+    <CornerFireflies v-if="randomCorner === 'fireflies'" />
+    <CornerSurprise />
+    <CornerClickEffect />
+
     <!-- 页面过渡动画 -->
     <transition
       :name="transitionName"
