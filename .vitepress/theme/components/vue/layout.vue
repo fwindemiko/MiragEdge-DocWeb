@@ -99,9 +99,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }) => {
         <div class="doc-footer" v-if="route.path.includes('/')">
           <div class="container">
             <div class="doc-footer-content">
-              <span>MiragEdge✰锐界幻境</span>
-              <span>  By </span>
-              <a href="https://space.bilibili.com/359174372" target="_blank" class="doc-footer-link">F.windEmiko</a>
+              <a href="https://space.bilibili.com/359174372" target="_blank" class="doc-footer-link">© 2020-2026 锐界幻境与贡献者</a>
             </div>  
             <div class="doc-footer-content">
               <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer" style="color: var(--vp-c-text-2); text-decoration: none;">
