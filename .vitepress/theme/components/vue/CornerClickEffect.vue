@@ -53,7 +53,11 @@ const animate = () => {
 }
 
 onMounted(() => {
-  document.addEventListener('click', handleClick)
+  // 延迟显示，页面加载0.5秒后再启用点击特效
+  setTimeout(() => {
+    document.addEventListener('click', handleClick)
+  }, 500)
+
   animationFrame = requestAnimationFrame(animate)
 })
 

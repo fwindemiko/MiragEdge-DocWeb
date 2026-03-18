@@ -37,15 +37,17 @@ const createSurprise = () => {
 }
 
 onMounted(() => {
-  // 随机间隔弹出惊喜 (15-30秒)
-  const scheduleNext = () => {
-    const delay = 360000 + Math.random() * 60000
-    interval = setTimeout(() => {
-      createSurprise()
-      scheduleNext()
-    }, delay)
-  }
-  scheduleNext()
+  // 延迟启动惊喜计时器，页面加载5秒后再开始
+  setTimeout(() => {
+    const scheduleNext = () => {
+      const delay = 360000 + Math.random() * 60000
+      interval = setTimeout(() => {
+        createSurprise()
+        scheduleNext()
+      }, delay)
+    }
+    scheduleNext()
+  }, 5000)
 })
 
 onUnmounted(() => {

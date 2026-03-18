@@ -3,11 +3,16 @@
 import { ref, onMounted } from 'vue'
 
 const notes = ref([])
+const isVisible = ref(false)
 
 onMounted(() => {
+  setTimeout(() => {
+    isVisible.value = true
+  }, 500)
+
   // 生成音符
   const noteChars = ['♪', '♫', '♬', '🎵', '🎶', '🎼', '🎸', '🎹']
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 8; i++) { // 减少数量
     notes.value.push({
       id: i,
       left: Math.random() * 100,
@@ -23,7 +28,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="notes-container">
+  <div class="notes-container" :class="{ visible: isVisible }">
     <div
       v-for="note in notes"
       :key="note.id"
@@ -49,10 +54,17 @@ onMounted(() => {
   height: 100%;
   pointer-events: none;
   z-index: 9996;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.notes-container.visible {
+  opacity: 1;
 }
 
 .note {
   position: absolute;
+  will-change: transform, opacity;
   animation: float-note ease-in-out infinite;
   text-shadow: 0 0 10px currentColor;
 }

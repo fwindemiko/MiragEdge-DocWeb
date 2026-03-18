@@ -24,19 +24,18 @@ const transitionName = ref('scale-in');
 // 检测是否为 404 页面
 const is404 = computed(() => page.value.isNotFound);
 
-// 随机角落装饰 - 根据路由生成一个随机种子，只在部分页面显示
-const randomCorner = computed(() => {
-  const path = route.path;
-  // 使用路径字符生成一个伪随机数
-  const hash = path.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  // 只有 10% 的页面会显示装饰
-  const show = (hash % 10) < 1;
-  if (!show) return null;
+// 随机角落装饰 - 每次路由变化时重新计算
+const randomCorner = ref(null)
 
-  // 根据 hash 选择显示哪个组件
-  const components = ['stars', 'quotes', 'bubbles', 'sakura', 'notes', 'leaves', 'fireflies'];
-  return components[hash % components.length];
-});
+watch(() => route.path, () => {
+  // 30% 概率显示装饰
+  if (Math.random() <= 0.3) {
+    const components = ['stars', 'quotes', 'bubbles', 'sakura', 'notes', 'leaves', 'fireflies'];
+    randomCorner.value = components[Math.floor(Math.random() * components.length)];
+  } else {
+    randomCorner.value = null;
+  }
+}, { immediate: true })
 
 /**
  * 滚动到页面顶部

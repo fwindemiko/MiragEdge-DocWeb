@@ -3,24 +3,29 @@
 import { ref, onMounted } from 'vue'
 
 const leaves = ref([])
+const isVisible = ref(false)
 
 onMounted(() => {
+  setTimeout(() => {
+    isVisible.value = true
+  }, 500)
+
   // 生成叶子
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 10; i++) { // 减少数量
     leaves.value.push({
       id: i,
       left: Math.random() * 100,
       delay: Math.random() * 8,
       duration: 10 + Math.random() * 8,
       size: 12 + Math.random() * 12,
-      hue: Math.floor(Math.random() * 50) // 绿色到黄色
+      hue: Math.floor(Math.random() * 50)
     })
   }
 })
 </script>
 
 <template>
-  <div class="leaves-container">
+  <div class="leaves-container" :class="{ visible: isVisible }">
     <div
       v-for="leaf in leaves"
       :key="leaf.id"
@@ -49,12 +54,19 @@ onMounted(() => {
   pointer-events: none;
   z-index: 9996;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.leaves-container.visible {
+  opacity: 1;
 }
 
 .leaf {
   position: absolute;
   top: -30px;
   border-radius: 0 80% 0 80%;
+  will-change: transform, opacity;
   animation: fall-leaf linear infinite;
 }
 

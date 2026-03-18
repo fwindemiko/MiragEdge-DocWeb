@@ -3,7 +3,8 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const petals = ref([])
-let animationFrame = null
+const isVisible = ref(false)
+let interval = null
 
 const createPetal = () => ({
   id: Math.random(),
@@ -15,14 +16,19 @@ const createPetal = () => ({
 })
 
 onMounted(() => {
+  // 延迟显示
+  setTimeout(() => {
+    isVisible.value = true
+  }, 500)
+
   // 初始化生成一批樱花
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 15; i++) { // 减少数量
     petals.value.push(createPetal())
   }
 
   // 定时补充樱花
-  const interval = setInterval(() => {
-    if (petals.value.length < 20) {
+  interval = setInterval(() => {
+    if (petals.value.length < 15) {
       petals.value.push(createPetal())
     }
   }, 3000)
@@ -32,7 +38,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="sakura-container">
+  <div class="sakura-container" :class="{ visible: isVisible }">
     <div
       v-for="petal in petals"
       :key="petal.id"
@@ -59,6 +65,12 @@ onMounted(() => {
   pointer-events: none;
   z-index: 9999;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.sakura-container.visible {
+  opacity: 1;
 }
 
 .petal {
@@ -66,6 +78,7 @@ onMounted(() => {
   top: -20px;
   background: linear-gradient(135deg, #ffb7c5 0%, #ffc0cb 50%, #fff0f5 100%);
   border-radius: 100% 0 100% 0;
+  will-change: transform, opacity;
   animation: fall linear infinite;
 }
 

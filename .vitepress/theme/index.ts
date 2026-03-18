@@ -9,12 +9,10 @@ import SmartImage from './components/vue/SmartImage.vue'
 import ChristmasTree from './components/vue/ChristmasTree.vue'
 import NodeStatus from './components/vue/NodeStatus.vue'
 import FeatureCard from './components/vue/FeatureCard.vue'
-import CornerCat from './components/vue/CornerCat.vue'
 import CornerStars from './components/vue/CornerStars.vue'
 import CornerQuotes from './components/vue/CornerQuotes.vue'
 import CornerSakura from './components/vue/CornerSakura.vue'
 import CornerBubbles from './components/vue/CornerBubbles.vue'
-import CornerMail from './components/vue/CornerMail.vue'
 import './css/custom.css'
 
 // 导入所有样式文件
@@ -57,12 +55,10 @@ export default {
     app.component('ChristmasTree', ChristmasTree)
     app.component('NodeStatus', NodeStatus)
     app.component('FeatureCard', FeatureCard)
-    app.component('CornerCat', CornerCat)
     app.component('CornerStars', CornerStars)
     app.component('CornerQuotes', CornerQuotes)
     app.component('CornerSakura', CornerSakura)
     app.component('CornerBubbles', CornerBubbles)
-    app.component('CornerMail', CornerMail)
 
     // 仅在浏览器环境下执行
     if (inBrowser) {

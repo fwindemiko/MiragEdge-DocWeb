@@ -3,10 +3,15 @@
 import { ref, onMounted } from 'vue'
 
 const fireflies = ref([])
+const isVisible = ref(false)
 
 onMounted(() => {
+  setTimeout(() => {
+    isVisible.value = true
+  }, 500)
+
   // 生成萤火虫
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 12; i++) { // 减少数量
     fireflies.value.push({
       id: i,
       left: Math.random() * 100,
@@ -22,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="fireflies-container">
+  <div class="fireflies-container" :class="{ visible: isVisible }">
     <div
       v-for="fly in fireflies"
       :key="fly.id"
@@ -50,6 +55,12 @@ onMounted(() => {
   height: 100%;
   pointer-events: none;
   z-index: 9997;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.fireflies-container.visible {
+  opacity: 1;
 }
 
 .firefly {
@@ -60,6 +71,7 @@ onMounted(() => {
     0 0 10px #fff59d,
     0 0 20px #ffee58,
     0 0 30px #ffeb3b;
+  will-change: transform, opacity;
   animation: fly-around ease-in-out infinite;
 }
 

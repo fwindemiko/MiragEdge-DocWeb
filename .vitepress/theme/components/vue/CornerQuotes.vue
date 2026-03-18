@@ -28,9 +28,14 @@ const quotes = [
 ]
 
 const currentQuote = ref(quotes[0])
-const showQuote = ref(true)
+const showQuote = ref(false)
 
 onMounted(() => {
+  // 延迟显示，页面加载1秒后再出现
+  setTimeout(() => {
+    showQuote.value = true
+  }, 1000)
+
   // 每30秒切换一次格言
   setInterval(() => {
     showQuote.value = false

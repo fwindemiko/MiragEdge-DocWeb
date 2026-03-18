@@ -3,24 +3,30 @@
 import { ref, onMounted } from 'vue'
 
 const bubbles = ref([])
+const isVisible = ref(false)
 
 onMounted(() => {
+  // 延迟显示，页面加载0.5秒后再出现
+  setTimeout(() => {
+    isVisible.value = true
+  }, 500)
+
   // 生成泡泡
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 10; i++) { // 减少数量
     bubbles.value.push({
       id: i,
       left: Math.random() * 100,
-      size: 8 + Math.random() * 20,
+      size: 8 + Math.random() * 15,
       delay: Math.random() * 10,
-      duration: 12 + Math.random() * 8,
-      hue: Math.random() * 60 + 170 // 蓝色到紫色范围
+      duration: 15 + Math.random() * 10,
+      hue: Math.random() * 60 + 170
     })
   }
 })
 </script>
 
 <template>
-  <div class="bubbles-container">
+  <div class="bubbles-container" :class="{ visible: isVisible }">
     <div
       v-for="bubble in bubbles"
       :key="bubble.id"
@@ -47,6 +53,12 @@ onMounted(() => {
   pointer-events: none;
   z-index: 9996;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.bubbles-container.visible {
+  opacity: 1;
 }
 
 .bubble {
@@ -54,7 +66,7 @@ onMounted(() => {
   bottom: -50px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(1px);
+  will-change: transform, opacity;
   animation: rise linear infinite;
 }
 

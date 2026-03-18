@@ -10,10 +10,18 @@ const stars = ref([
   { id: 5, top: '40%', left: '3%', delay: 2, duration: 3 },
   { id: 6, top: '60%', right: '3%', delay: 0.8, duration: 5 },
 ])
+
+const isVisible = ref(false)
+
+onMounted(() => {
+  setTimeout(() => {
+    isVisible.value = true
+  }, 500)
+})
 </script>
 
 <template>
-  <div class="stars-container">
+  <div class="stars-container" :class="{ visible: isVisible }">
     <div
       v-for="star in stars"
       :key="star.id"
@@ -39,12 +47,19 @@ const stars = ref([
   height: 100%;
   pointer-events: none;
   z-index: 9998;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.stars-container.visible {
+  opacity: 1;
 }
 
 .star {
   position: absolute;
   color: #ffd700;
   font-size: 20px;
+  will-change: transform, opacity;
   animation: twinkle ease-in-out infinite;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
 }
