@@ -264,6 +264,8 @@ const loadMarkdown = async () => {
     if (!res.ok) throw new Error(`加载失败: ${res.status}`)
     rawMarkdown.value = await res.text()
     const parsed = parseMarkdown(rawMarkdown.value)
+    // 默认展开前3个条目
+    parsed.slice(0, 3).forEach(item => expandedItems.value.add(item.date))
   } catch (e) {
     error.value = e instanceof Error ? e.message : '加载数据失败'
     console.error('加载日志失败:', e)
