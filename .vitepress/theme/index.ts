@@ -13,6 +13,7 @@ import CornerStars from './components/vue/CornerStars.vue'
 import CornerQuotes from './components/vue/CornerQuotes.vue'
 import CornerSakura from './components/vue/CornerSakura.vue'
 import CornerBubbles from './components/vue/CornerBubbles.vue'
+import ChangelogFromMd from './components/vue/ChangelogFromMd.vue'
 import './css/custom.css'
 
 // 导入所有样式文件
@@ -28,7 +29,6 @@ import './style/dark.css'
 
 // 导入第三方库和组件
 import { inBrowser } from "vitepress"
-import Confetti from "./components/vue/Confetti.vue"
 import LayoutComponent from './components/vue/layout.vue'
 import Contributors from './components/vue/Contributors.vue'
 
@@ -47,7 +47,6 @@ export default {
 
   enhanceApp({ app, router, siteData }) {
     // 注册全局组件
-    app.component("Confetti", Confetti)
     app.component("LayoutComponent", LayoutComponent)
     app.component('Contributors', Contributors)
     app.component('SmartImage', SmartImage)
@@ -58,6 +57,7 @@ export default {
     app.component('CornerQuotes', CornerQuotes)
     app.component('CornerSakura', CornerSakura)
     app.component('CornerBubbles', CornerBubbles)
+    app.component('ChangelogFromMd', ChangelogFromMd)
 
     // 仅在浏览器环境下执行
     if (inBrowser) {
