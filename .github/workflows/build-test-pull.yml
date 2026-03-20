@@ -129,13 +129,13 @@ jobs:
       - name: 复制 mark.js 依赖
         run: cp -rf ./.vitepress/mark.js ./node_modules/
 
-      - name: Build project
+      - name: 构建网站项目
         env:
           GH_TOKEN: ${{ secrets.GH_showContributors_token }}
           GITHUB_TOKEN: ${{ secrets.GH_showContributors_token }}
         run: pnpm run build
 
-      - name: Run coverage tests
+      - name: 运行覆盖率测试
         id: coverage
         run: |
           echo "=== 开始覆盖率测试 ==="
@@ -152,7 +152,7 @@ jobs:
           fi
         continue-on-error: true
 
-      - name: Upload coverage results
+      - name: 上传覆盖率结果
         if: always()
         uses: actions/upload-artifact@v4
         with:
