@@ -8,7 +8,7 @@ on:
 
 # 允许并发运行，取消旧运行
 concurrency:
-  group: ${{ raw }}github.workflow}-${{ raw }}github.ref
+  group: ${{ github.workflow}-${{ github.ref
   cancel-in-progress: true
 
 env:
