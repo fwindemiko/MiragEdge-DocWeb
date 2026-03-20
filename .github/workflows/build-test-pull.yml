@@ -29,10 +29,13 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: ${{ env.NODE_VERSION }} }
       - run: pnpm install && cp -rf ./.vitepress/mark.js ./node_modules/ && pnpm run build
+      - name: 打包
+        if: github.event_name == 'push'
+        run: tar -czf site.tar.gz -C .vitepress/dist .
       - name: 上传构建产物
         if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
-        with: { name: site, path: .vitepress/dist, retention-days: 1 }
+        with: { name: site, path: site.tar.gz, retention-days: 1 }
 
   deploy:
     name: 部署
@@ -47,10 +50,10 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with: { ssh-private-key: ${{ secrets.actions }} }
       - run: |
-          ssh-keyscan -H 110.42.45.207 >> ~/.ssh/known_hosts
-          ssh -p 22 root@110.42.45.207 "
+          ssh-keyscan -H 110.42.45.207 >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -o StrictHostKeyChecking=no root@110.42.45.207 "
             mkdir -p /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/ &&
             rm -rf /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/* &&
-            tar -xzf dist.tar.gz -C /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/ &&
+            tar -xzf site.tar.gz -C /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/ &&
             echo 部署成功
           "
