@@ -157,6 +157,27 @@ jobs:
           path: "${{ env.TEST_OUTPUT_DIR }}/test/"
           retention-days: 7
 
+      - name: 打包构建产物
+        if: github.event_name == 'push'
+        run: |
+          if [ -d "./.vitepress/dist" ]; then
+            BUILD_DIR="./.vitepress/dist"
+          elif [ -d "./dist" ]; then
+            BUILD_DIR="./dist"
+          else
+            echo "错误：未找到构建目录"
+            exit 1
+          fi
+          tar -czf "${{ runner.temp }}/build-${{ github.run_id }}.tar.gz" -C "$(dirname $BUILD_DIR)" "$(basename $BUILD_DIR)"
+
+      - name: 上传构建产物
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-site-${{ github.run_id }}.tar
+          path: "${{ runner.temp }}/build-${{ github.run_id }}.tar.gz"
+          retention-days: 1
+
   # ============================================
   # ===== 作业4: 部署到服务器 ===== (仅 main 分支推送时)
   # ============================================
