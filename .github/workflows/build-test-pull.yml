@@ -54,15 +54,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: site
+          path: ./
       - name: 部署
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.actions }}
       - run: |
           ssh-keyscan -H 110.42.45.207 >> ~/.ssh/known_hosts 2>/dev/null
+          scp -o StrictHostKeyChecking=no site.tar.gz root@110.42.45.207:/tmp/ &&
           ssh -o StrictHostKeyChecking=no root@110.42.45.207 "
             mkdir -p /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/ &&
             rm -rf /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/* &&
-            tar -xzf site.tar.gz -C /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/ &&
+            tar -xzf /tmp/site.tar.gz -C /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/ &&
+            rm /tmp/site.tar.gz &&
             echo 部署成功
           "
