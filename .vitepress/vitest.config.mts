@@ -31,10 +31,10 @@ export default defineConfig({
       clean: true,
       cleanOnRerun: true,
       thresholds: {
-        lines: 0, // 暂时不设置阈值，后续可以调整
-        functions: 0,
-        branches: 0,
-        statements: 0
+        lines: 30,      // 初始覆盖率要求 30%
+        functions: 30,
+        branches: 20,   // 分支覆盖率通常较低
+        statements: 30
       }
     },
     reporters: [
