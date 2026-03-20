@@ -17,7 +17,7 @@
   caption="Simple Voice Chat"
 />
 
-[**锐界幻境下载站**](https://cloud.miragedge.top/mod/SimpleVoiceChat)
+[**锐界幻境下载站**](https://cloud.miragedge.top/guest/mod/SimpleVoiceChat)
 
 [官方下载页面](https://modrepo.de/minecraft/voicechat/downloads "modrepo")(选择你需要的版本)
 
@@ -58,7 +58,7 @@
   caption="AllMusic"
 />
 
-[**锐界幻境下载站**](https://cloud.miragedge.top/mod/AllMusic)
+[**锐界幻境下载站**](https://cloud.miragedge.top/guest/mod/AllMusic)
 
 [**蓝奏云备用地址下载**](https://wwbkb.lanzouu.com/b002vmtcve "AllMusic")(密码: 3fsb )
 
