@@ -1,0 +1,34 @@
+name: ğŸ‹ Bug Report
+description: Report a bug to help us improve
+title:"[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+      ## #Â~B Bug Description
+      Please describe the bug clearly.
+ 
+  - type: textarea
+    id: steps
+    attributes:
+      label: "ğŸ’ Steps to Reproduce"
+      placeholder: "1. Go to '...'
+2. Click on '...'
+3. See error"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label:"(Â¾C Expected Behavior"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label:"#â— Actual Behavior"
+    validations:
+      required: true
