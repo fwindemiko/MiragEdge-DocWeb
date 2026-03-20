@@ -170,15 +170,15 @@ jobs:
     needs: build-test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
-      - name: Setup SSH agent
+      - name: 配置 SSH 密钥
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.actions }}
 
-      - name: Add SSH known hosts
+      - name: 添加服务器信任
         run: ssh-keyscan -H 110.42.45.207 >> ~/.ssh/known_hosts
 
-      - name: Deploy to server
+      - name: 部署到服务器
         run: |
           REMOTE_USER="root"
           REMOTE_HOST="110.42.45.207"
