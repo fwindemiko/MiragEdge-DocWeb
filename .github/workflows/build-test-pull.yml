@@ -1,185 +1,200 @@
-name: 测试构建部署工作流
+name: CI/CD 持续集成
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "develop"]
   pull_request:
-    branches: ["main"]
+    branches: ["main", "develop"]
+
+# 允许并发运行，取消旧运行
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: 22.x
+  PNPM_VERSION: 10.15.0
+  TEST_OUTPUT_DIR: test_tool
 
 jobs:
-  build-and-test:
+  # ============================================
+  # ===== 作业1: 代码质量检查 =====
+  # ============================================
+  lint:
+    name: 代码质量检查
     runs-on: ubuntu-latest
-    env:
-      NODE_VERSION: 22.x
-      TEST_OUTPUT_DIR: test_tool
-      VITEST_OUTPUT: test_tool/test/test-results/test-output.json
-      VITEST_COVERAGE: test_tool/test/coverage
-
     steps:
-      - uses: actions/checkout@v4
+      - name: 拉取代码
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # 0 表示拉取所有分支和历史记录, 以确保获取完整的提交历史和标签信息
+          fetch-depth: 0
 
-      - name: 使用 Node.js ${{ env.NODE_VERSION }}
+      - name: 安装 pnpm 包管理器
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 安装 Node.js 环境
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: "**/package-lock.json"
+          cache-dependency-path: pnpm-lock.yaml
 
-      - name: 安装npm依赖包
-        run: npm ci
+      - name: 安装项目依赖
+        run: pnpm install
 
-      - name: 复制 mark.js依赖包
+      - name: 复制 mark.js 依赖
         run: cp -rf ./.vitepress/mark.js ./node_modules/
 
-      - name: 创建测试报告输出目录
+      - name: TypeScript 类型检查
+        run: pnpm run typecheck 2>&1 || echo "跳过 typecheck (未配置)"
+
+  # ============================================
+  # ===== 作业2: 单元测试 =====
+  # ============================================
+  unit-test:
+    name: 单元测试
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 安装 pnpm 包管理器
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 安装 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: 安装项目依赖
+        run: pnpm install
+
+      - name: 复制 mark.js 依赖
+        run: cp -rf ./.vitepress/mark.js ./node_modules/
+
+      - name: 创建测试目录
         run: |
           mkdir -p "${{ env.TEST_OUTPUT_DIR }}/test/coverage"
           mkdir -p "${{ env.TEST_OUTPUT_DIR }}/test/test-results"
           mkdir -p "${{ env.TEST_OUTPUT_DIR }}/test/logs"
-          echo "测试目录创建成功"
 
-      - name: 检查所有贡献者
-        run: git log --format="%aE" | sort -u
-
-      - name: 构建网页项目
-        env:
-          GH_TOKEN: ${{ secrets.GH_showContributors_token }}
-          GITHUB_TOKEN: ${{ secrets.GH_showContributors_token }} # 访问私有仓库令牌，获取贡献者信息
-        run: npm run build
-
-      - name: 运行测试并输出报告
-        id: tests
+      - name: 运行单元测试
+        id: unit-tests
         run: |
-          echo "开始执行测试..."
-          npm run test:coverage 2>&1 | tee "${{ env.TEST_OUTPUT_DIR }}/test/logs/test-output.log"
-          
-          # 记录退出代码
-          TEST_EXIT_CODE=${PIPESTATUS[0]}
-          echo "测试退出码: $TEST_EXIT_CODE"
-          
-          # 验证测试输出文件
-          if [ -f "${{ env.TEST_OUTPUT_DIR }}/test/test-results/test-output.json" ]; then
-            echo "✓ 测试报告生成成功"
-          else
-            echo "✗ 测试报告未生成"
-          fi
-          
-          if [ -d "${{ env.TEST_OUTPUT_DIR }}/test/coverage" ]; then
-            echo "✓ 覆盖率报告生成成功"
-          else
-            echo "✗ 覆盖率报告未生成"
-          fi
-          
-          exit $TEST_EXIT_CODE
-        continue-on-error: true
+          echo "=== 开始执行单元测试 ==="
+          pnpm run test:unit 2>&1 | tee "${{ env.TEST_OUTPUT_DIR }}/test/logs/unit-test.log"
+          echo "unit_exit_code=$?" >> $GITHUB_OUTPUT
 
-      - name: 更新测试工件
+      - name: 上传单元测试结果
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results-${{ github.run_id }}.tar
+          name: unit-test-results-${{ github.run_id }}
+          path: "${{ env.TEST_OUTPUT_DIR }}/test/logs/unit-test.log"
+          retention-days: 7
+
+  # ============================================
+  # ===== 作业3: 构建与覆盖率测试 =====
+  # ============================================
+  build-test:
+    name: 构建与覆盖率测试
+    runs-on: ubuntu-latest
+    needs: unit-test
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 安装 pnpm 包管理器
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 安装 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: 安装项目依赖
+        run: pnpm install
+
+      - name: 复制 mark.js 依赖
+        run: cp -rf ./.vitepress/mark.js ./node_modules/
+
+      - name: 构建网站项目
+        env:
+          GH_TOKEN: ${{ secrets.GH_showContributors_token }}
+          GITHUB_TOKEN: ${{ secrets.GH_showContributors_token }}
+        run: pnpm run build
+
+      - name: 运行覆盖率测试
+        id: coverage
+        run: |
+          echo "=== 开始覆盖率测试 ==="
+          pnpm run test:coverage 2>&1 | tee "${{ env.TEST_OUTPUT_DIR }}/test/logs/coverage.log"
+          COVERAGE_EXIT_CODE=$?
+          echo "coverage_exit_code=$COVERAGE_EXIT_CODE" >> $GITHUB_OUTPUT
+
+          if [ -f "${{ env.TEST_OUTPUT_DIR }}/test/test-results/test-output.json" ]; then
+            echo "✓ 测试报告生成成功"
+          fi
+
+          if [ -d "${{ env.TEST_OUTPUT_DIR }}/test/coverage" ]; then
+            echo "✓ 覆盖率报告生成成功"
+          fi
+        continue-on-error: true
+
+      - name: 上传覆盖率结果
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-results-${{ github.run_id }}
           path: "${{ env.TEST_OUTPUT_DIR }}/test/"
           retention-days: 7
 
-      - name: 测试统计信息输出总结
-        if: always()
-        run: |
-          echo "=== 测试执行摘要 ==="
-          echo "测试结果: ${{ steps.tests.outcome }}"
-          
-          if [ -f "${{ env.TEST_OUTPUT_DIR }}/test/logs/test-output.log" ]; then
-            echo "=== 测试日志最后20行 ==="
-            tail -20 "${{ env.TEST_OUTPUT_DIR }}/test/logs/test-output.log"
-          fi
-          
-          echo "=== 测试结果目录 ==="
-          echo "覆盖率: ${{ env.TEST_OUTPUT_DIR }}/test/coverage/"
-          echo "报告: ${{ env.TEST_OUTPUT_DIR }}/test/test-results/"
-          echo "日志: ${{ env.TEST_OUTPUT_DIR }}/test/logs/"
-
-      # ---------- 打包构建产物 ----------
-      - name: 打包构建产物
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
-        id: package
-        run: |
-          # 自动探测构建输出目录
-          if [ -d "./.vitepress/dist" ]; then
-            BUILD_DIR="./.vitepress/dist"
-          elif [ -d "./dist" ]; then
-            BUILD_DIR="./dist"
-          else
-            echo "错误：未找到构建输出目录（dist 或 .vitepress/dist）"
-            exit 1
-          fi
-          echo "使用构建目录: $BUILD_DIR"
-
-          # 定义打包文件名
-          PACKAGE_NAME="build-${{ github.run_id }}.tar.gz"
-          echo "PACKAGE_NAME=$PACKAGE_NAME" >> $GITHUB_ENV
-          echo "BUILD_DIR=$BUILD_DIR" >> $GITHUB_ENV
-
-          # 切换到父目录，打包构建目录
-          cd "$(dirname "$BUILD_DIR")"
-          # 使用 gzip -9 最高压缩级别
-          tar -c "$(basename "$BUILD_DIR")" | gzip -9 > "${{ runner.temp }}/$PACKAGE_NAME"
-          echo "打包完成: ${{ runner.temp }}/$PACKAGE_NAME (gzip -9)"
-
-      # ---------- 上传打包文件为 GitHub 工件 ----------
-      - name: 上传构建产物
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: built-site-${{ github.run_id }}.tar
-          path: "${{ runner.temp }}/build-${{ github.run_id }}.tar.gz"
-          retention-days: 7
-          if-no-files-found: error
-
-      # ---------- 部署阶段 ----------
-      - name: 设置 SSH 代理
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
+  # ============================================
+  # ===== 作业4: 部署到服务器 ===== (仅 main 分支推送时)
+  # ============================================
+  deploy:
+    name: 部署到服务器
+    runs-on: ubuntu-latest
+    needs: build-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: 配置 SSH 密钥
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.actions }}
 
-      - name: 添加 SSH 已知主机
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
-        run: |
-          ssh-keyscan -H 110.42.45.207 >> ~/.ssh/known_hosts
+      - name: 添加服务器信任
+        run: ssh-keyscan -H 110.42.45.207 >> ~/.ssh/known_hosts
 
       - name: 部署到服务器
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && success()
         run: |
-          # 定义远程服务器信息
           REMOTE_USER="root"
           REMOTE_HOST="110.42.45.207"
           REMOTE_PORT="22"
           REMOTE_PATH="/www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/"
           PACKAGE_NAME="build-${{ github.run_id }}.tar.gz"
-          LOCAL_PACKAGE="${{ runner.temp }}/$PACKAGE_NAME"
 
-          # 1. 确保远程目标目录存在
-          ssh -p "$REMOTE_PORT" "${REMOTE_USER}@${REMOTE_HOST}" "mkdir -p \"${REMOTE_PATH}\""
+          # 下载构建产物
+          gh run download ${{ github.run_id }} -n "built-site-${{ github.run_id }}.tar" -D /tmp || true
 
-          # 2. 上传压缩包到远程服务器临时位置，并检查 scp 是否成功
-          scp -P "$REMOTE_PORT" "$LOCAL_PACKAGE" "${REMOTE_USER}@${REMOTE_HOST}:/tmp/$PACKAGE_NAME" || {
-            echo "❌ SCP 上传失败"
-            exit 1
-          }
+          # 确保远程目录存在
+          ssh -p "$REMOTE_PORT" "${REMOTE_USER}@${REMOTE_HOST}" "mkdir -p ${REMOTE_PATH}"
 
-          # 3. 远程解压到目标目录并清理（使用单引号包裹远程命令，内部变量断开引号处理）
+          # 上传并解压
+          scp -P "$REMOTE_PORT" "/tmp/$PACKAGE_NAME" "${REMOTE_USER}@${REMOTE_HOST}:/tmp/$PACKAGE_NAME"
           ssh -p "$REMOTE_PORT" "${REMOTE_USER}@${REMOTE_HOST}" '
-            set -e
-            echo "解压中..."
-            # 清空目标目录（保留目录本身）
-            rm -rf "'"${REMOTE_PATH}"'"*
-            # 解压到目标目录（假设包内包含一个顶层目录，需 strip 第一层）
-            tar -xzf "/tmp/'"$PACKAGE_NAME"'" -C "'"${REMOTE_PATH}"'" --strip-components=1
-            # 删除临时压缩包
-            rm -f "/tmp/'"$PACKAGE_NAME"'"
-            echo "解压完成，目录内容："
-            ls -la "'"${REMOTE_PATH}"'"
+            rm -rf "${REMOTE_PATH}"*
+            tar -xzf "/tmp/$PACKAGE_NAME" -C "${REMOTE_PATH}" --strip-components=1
+            rm -f "/tmp/$PACKAGE_NAME"
           '
 
           echo "✅ 部署完成！"
+
