@@ -29,7 +29,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - run: pnpm install && pnpm run typecheck 2>&1 || echo "跳过"
+      - run: pnpm install && pnpm run typecheck
 
   test:
     name: 测试
