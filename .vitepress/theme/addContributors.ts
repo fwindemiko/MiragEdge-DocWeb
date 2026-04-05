@@ -34,8 +34,9 @@ const octokit = new Octokit({
 async function getRepoContributors(): Promise<EmailWithSha1[]> {
   try {
     const logOutput = await git.log(['--format=%ae %H']);
-    // logOutput.all 是 commit 对象数组，每个对象有 author_email 和 hash 属性
-    const logAll = logOutput.all as Array<{ author_email: string; hash: string }>;
+    // logOutput.all 是 commit 对象数组，使用 as unknown as 进行类型断言
+    type CommitWithEmail = { author_email: string; hash: string };
+    const logAll = logOutput.all as unknown as CommitWithEmail[];
     
     if (!logAll || logAll.length === 0) {
       console.warn('No commits found in repository');
@@ -155,8 +156,9 @@ async function getEmailList(filePath: string): Promise<string[]> {
       filePath,
     ]);
     
-    // logOutput.all 是 commit 对象数组，每个对象有 author_email 属性
-    const logAll = logOutput.all as Array<{ author_email: string; hash: string }>;
+    // logOutput.all 是 commit 对象数组，使用 as unknown as 进行类型断言
+    type CommitWithEmail = { author_email: string; hash: string };
+    const logAll = logOutput.all as unknown as CommitWithEmail[];
     
     if (!logAll || logAll.length === 0) {
       console.log(`No contributors found for file: ${filePath}`);
