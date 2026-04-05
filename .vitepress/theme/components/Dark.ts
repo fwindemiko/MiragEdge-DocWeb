@@ -1,23 +1,43 @@
-import { nextTick, provide } from 'vue'
+import { nextTick, provide, readonly, ref } from 'vue'
+
+// 全局暗色模式状态
+const isDarkState = ref(false)
+
 // 判断是否能使用 startViewTransition
 const enableTransitions = () => {
   return 'startViewTransition' in document && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 }
-// 切换动画
-export const toggleDark = (isDark) => {
-  provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
-    //如果不支持动效直接切换
+
+// 暴露一个响应式的暗色模式状态供外部读取
+export const useDarkMode = () => {
+  return {
+    isDark: readonly(isDarkState),
+  }
+}
+
+// 提供切换暗色模式的函数（通过 provide 机制）
+export const toggleDark = (isDarkRef) => {
+  // 创建一个可写的响应式，每次切换时更新
+  const toggle = async (e?: MouseEvent) => {
+    const isDark = isDarkRef.value
+    
     if (!enableTransitions()) {
-      isDark.value = !isDark.value
+      isDarkRef.value = !isDark
       return
     }
-    document.documentElement.style.setProperty('--darkX', x + 'px')
-    document.documentElement.style.setProperty('--darkY', y + 'px')
-    // 原生的视图转换动画 https://developer.mozilla.org/zh-CN/docs/Web/API/Document/startViewTransition
-    // pnpm add -D @types/dom-view-transitions 解决 document.startViewTransition 类型错误的问题
+    
+    if (e) {
+      document.documentElement.style.setProperty('--darkX', e.clientX + 'px')
+      document.documentElement.style.setProperty('--darkY', e.clientY + 'px')
+    }
+    
     await document.startViewTransition(async () => {
-      isDark.value = !isDark.value
+      isDarkRef.value = !isDark
       await nextTick()
     }).ready
-  })
+  }
+  
+  provide('toggle-appearance', toggle)
+  
+  return toggle
 }
