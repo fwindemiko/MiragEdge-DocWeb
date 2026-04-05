@@ -34,9 +34,9 @@ const octokit = new Octokit({
 async function getRepoContributors(): Promise<EmailWithSha1[]> {
   try {
     const logOutput = await git.log(['--format=%ae %H']);
-    const logLines = logOutput.all;
+    const logAll = logOutput.all;
     
-    if (!logLines) {
+    if (!logAll || logAll.length === 0) {
       console.warn('No commits found in repository');
       return [];
     }
@@ -44,8 +44,14 @@ async function getRepoContributors(): Promise<EmailWithSha1[]> {
     const contributors = new Map<string, string>();
     
     // 去重，只保留每个Email的第一个commit
-    logLines.reverse().forEach((commit) => {
-      const [email, sha1] = commit.split(' ');
+    // logOutput.all 是 commit 对象数组，每个对象有 author_email 和 hash 属性
+    logAll.reverse().forEach((commit) => {
+      const email = commit.author_email;
+      const sha1 = commit.hash;
+      if (email && sha1 && !contributors.has(email)) {
+        contributors.set(email, sha1);
+      }
+    });
       if (email && sha1 && !contributors.has(email)) {
         contributors.set(email, sha1);
       }
@@ -153,18 +159,24 @@ async function getEmailList(filePath: string): Promise<string[]> {
       filePath,
     ]);
     
-    const logLines = logOutput.latest?.hash
-      .split('\n')
-      .reverse()
-      .filter(email => email && email.trim() !== '');
+    const logAll = logOutput.all;
     
-    if (!logLines || logLines.length === 0) {
+    if (!logAll || logAll.length === 0) {
       console.log(`No contributors found for file: ${filePath}`);
       return [];
     }
     
-    // 去重
-    return Array.from(new Set(logLines.map(email => email.trim())));
+    // 去重，只保留每个Email的第一个commit
+    // logOutput.all 是 commit 对象数组，使用 author_email 获取邮箱
+    const emailSet = new Set<string>();
+    logAll.reverse().forEach((commit) => {
+      const email = commit.author_email?.trim();
+      if (email) {
+        emailSet.add(email);
+      }
+    });
+    
+    return Array.from(emailSet);
   } catch (error) {
     console.error(`Error getting email list for ${filePath}:`, error);
     return [];
