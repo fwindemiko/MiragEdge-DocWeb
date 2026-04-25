@@ -78,8 +78,9 @@ jobs:
         run: |
           set -e
           ssh-keyscan -H miragedge.top >> ~/.ssh/known_hosts 2>/dev/null || true
-          scp -o ConnectTimeout=60 -o StrictHostKeyChecking=no site.tar.gz root@miragedge.top:/tmp/
-          ssh -o ConnectTimeout=60 -o StrictHostKeyChecking=no root@miragedge.top << 'ENDSSH'
+          ssh-keyscan -H deploy.miragedge.top >> ~/.ssh/known_hosts 2>/dev/null || true
+          scp -o ConnectTimeout=60 -o StrictHostKeyChecking=no site.tar.gz root@deploy.miragedge.top:/tmp/
+          ssh -o ConnectTimeout=60 -o StrictHostKeyChecking=no root@deploy.miragedge.top << 'ENDSSH'
             mkdir -p /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/
             rm -rf /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/*
             tar -xzf /tmp/site.tar.gz -C /www/MiragEdge/MiragEdge-DocWeb/build/miragedge.top/
