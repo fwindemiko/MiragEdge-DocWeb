@@ -71,7 +71,7 @@ jobs:
           name: site
           path: ./
       - name: 部署
-        uses: webfactory/ssh-agent@v0.5.3
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.actions }}
       - name: 远程部署
