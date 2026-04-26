@@ -8,7 +8,7 @@ hero:
   text: "Minecraft 生存服务器"
   tagline: 👼🏻 远离困扰之地（锐界）和天堂般的境地（幻境），在数字荒漠中打造一片绿洲，让每个玩家都能找到属于自己的幻境
   image:
-    src: /avatars/MiragEdge.png
+    src: /resourcepack/items_skin/food/sweet_berries_cupcake.png
     alt: MiragEdge
   actions:
     - theme: brand
