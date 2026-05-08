@@ -123,9 +123,20 @@ const hiddenImage = '/title_img/icon-dis.png'
 
 let animationFrameId = null
 let particles = []
+let isPageVisible = true // 页面可见性状态
 
 onMounted(async () => {
   await nextTick()
+  
+  // 监听页面可见性变化，页面不可见时停止动画
+  document.addEventListener('visibilitychange', () => {
+    isPageVisible = !document.hidden
+  })
+  
+  // 页面不可见时不初始化动画
+  if (document.hidden) {
+    return
+  }
 
   // 加权随机选择：dis.png 概率为其他图片的 1/5
   const weightedImages = [
@@ -348,6 +359,12 @@ function initStarEffect() {
   let frame = 0
 
   const animate = () => {
+    // 页面不可见时停止动画循环
+    if (!isPageVisible) {
+      animationFrameId = null
+      return
+    }
+    
     animationFrameId = requestAnimationFrame(animate)
 
     ctx.clearRect(0, 0, width, height)
