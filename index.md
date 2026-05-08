@@ -248,10 +248,25 @@ class Star {
 
   draw() {
     const alpha = this.life * 0.8
+    const s = this.size
+    ctx.save()
+    ctx.translate(this.x, this.y)
+    ctx.rotate(this.life * 0.5)
+
     ctx.beginPath()
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+    ctx.moveTo(0, -s)
+    ctx.lineTo(s * 0.3, -s * 0.3)
+    ctx.lineTo(s, 0)
+    ctx.lineTo(s * 0.3, s * 0.3)
+    ctx.lineTo(0, s)
+    ctx.lineTo(-s * 0.3, s * 0.3)
+    ctx.lineTo(-s, 0)
+    ctx.lineTo(-s * 0.3, -s * 0.3)
+    ctx.closePath()
+
     ctx.fillStyle = `hsla(${this.hue}, 80%, 70%, ${alpha})`
     ctx.fill()
+    ctx.restore()
   }
 }
 
@@ -284,20 +299,20 @@ function animate() {
 
 onMounted(async () => {
   await nextTick()
-  
+
   const weightedImages = [
     ...images.flatMap(img => Array(5).fill(img)),
     hiddenImage
   ]
   const randomImage = weightedImages[Math.floor(Math.random() * weightedImages.length)]
-  
+
   const selectors = [
     '.VPHomeHero .VPImage img',
     '.VPHomeHero img',
     'main .VPImage img',
     '[alt="xingjiu"]'
   ]
-  
+
   for (const selector of selectors) {
     const found = document.querySelector(selector)
     if (found) {
@@ -305,13 +320,16 @@ onMounted(async () => {
       break
     }
   }
-  
+
   if (heroImage) {
     heroImage.src = randomImage
     heroImage.alt = 'xingjiu'
   }
-  
-  initStarEffect()
+
+  requestAnimationFrame(() => {
+    updateCenter()
+    initStarEffect()
+  })
 })
 
 onUnmounted(() => {
