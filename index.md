@@ -120,6 +120,42 @@ const hiddenImage = '/title_img/icon-dis.png'
 
 let animationFrameId = null
 let particles = []
+let isPageVisible = true // 页面可见性状态
+
+onMounted(async () => {
+  await nextTick()
+  
+  // 监听页面可见性变化，页面不可见时停止动画
+  document.addEventListener('visibilitychange', () => {
+    isPageVisible = !document.hidden
+  })
+  
+  // 页面不可见时不初始化动画
+  if (document.hidden) {
+    return
+  }
+
+  // 加权随机选择：dis.png 概率为其他图片的 1/5
+  const weightedImages = [
+    ...images.flatMap(img => Array(5).fill(img)),
+    hiddenImage
+  ]
+
+  const randomImage = weightedImages[Math.floor(Math.random() * weightedImages.length)]
+
+  // 查找 hero 图片元素
+  const selectors = [
+    '.VPHomeHero .VPImage img',
+    '.VPHomeHero img',
+    'main .VPImage img',
+    '[alt="xingjiu"]'
+  ]
+
+  let heroImage = null
+  for (const selector of selectors) {
+    heroImage = document.querySelector(selector)
+    if (heroImage) break
+  }
 let heroImage = null
 
 const config = {
@@ -246,6 +282,24 @@ class Star {
     this.life -= this.decay
   }
 
+  let frame = 0
+
+  const animate = () => {
+    // 页面不可见时停止动画循环
+    if (!isPageVisible) {
+      animationFrameId = null
+      return
+    }
+    
+    animationFrameId = requestAnimationFrame(animate)
+
+    ctx.clearRect(0, 0, width, height)
+    ctx.globalCompositeOperation = 'lighter'
+
+    frame++
+
+    const heroImage = document.querySelector('.VPHomeHero .VPImage img') ||
+                     document.querySelector('.VPHomeHero img')
   draw() {
     const alpha = this.life * 0.8
     ctx.beginPath()
