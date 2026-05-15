@@ -8,7 +8,7 @@ hero:
   text: "Minecraft 生存服务器"
   tagline: 👼🏻 远离困扰之地（锐界）和天堂般的境地（幻境），在数字荒漠中打造一片绿洲，让每个玩家都能找到属于自己的幻境
   image:
-    src: /resourcepack/items_skin/food/sweet_berries_cupcake.png
+    src: /images/resourcepack/items_skin/food/sweet_berries_cupcake.png
     alt: MiragEdge
   actions:
     - theme: brand
@@ -295,7 +295,7 @@ onMounted(async () => {
     '.VPHomeHero .VPImage img',
     '.VPHomeHero img',
     'main .VPImage img',
-    '[alt="xingjiu"]'
+    '[alt="MiragEdge"]'
   ]
   
   for (const selector of selectors) {
@@ -307,8 +307,15 @@ onMounted(async () => {
   }
   
   if (heroImage) {
-    heroImage.src = randomImage
-    heroImage.alt = 'xingjiu'
+    const img = new Image()
+    img.onload = () => {
+      heroImage.src = randomImage
+      heroImage.alt = 'xingjiu'
+    }
+    img.onerror = () => {
+      console.warn('Failed to load hero image:', randomImage)
+    }
+    img.src = randomImage
   }
   
   initStarEffect()
