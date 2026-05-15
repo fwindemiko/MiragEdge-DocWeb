@@ -106,10 +106,12 @@ features:
 }
 </style>
 
-<canvas id="star-canvas"></canvas>
+<ClientOnly>
+  <canvas id="star-canvas"></canvas>
+</ClientOnly>
 
 <script setup>
-import { onMounted, onUnmounted, nextTick } from 'vue'
+import { onMounted, onUnmounted, nextTick, ref } from 'vue'
 
 const images = [
   '/title_img/icon-1.png',
